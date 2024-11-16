@@ -52,7 +52,7 @@ El trabajo está dividido entre tres integrantes:
 
 ## Este examen está diseñado para demostrar habilidades en:
 
-- vHerencia.
+- Herencia.
 - Polimorfismo.
 - Encapsulamiento.
 - Manejo de clases abstractas y especialización.
