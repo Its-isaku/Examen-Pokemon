@@ -254,3 +254,5 @@ print("\n||---------------------------------------------------------------------
 #? menu_elegir_pokemon()
 
 #TODO: Falta agregar la funciones a el Main switch
+
+#cambio hecho para ver si ya todo funciona
