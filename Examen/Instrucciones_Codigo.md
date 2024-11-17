@@ -4,13 +4,13 @@
 ## Encabezado obligatorio en cada archivo
 Incluye este bloque al inicio de cada archivo para identificar al autor y la funcion principal:
 
-```python
+```python 
 '''
- //! Nombre de integrante
- //? Grupo: 544
- //? Nombre de Profesor
+ #! Nombre de integrante
+ #? Grupo: 544
+ #? Nombre de Profesor
 
- //* Breve repaso de lo que hara en el archivo
+ #* Breve repaso de lo que hara en el archivo
 '''
 ```
 
@@ -18,11 +18,11 @@ Incluye este bloque al inicio de cada archivo para identificar al autor y la fun
 
 ```python
 '''
- //! Sofia
- //? Grupo: 544
- //? Profesor: Emanuel Gomez
+ #! Sofia
+ #? Grupo: 544
+ #? Profesor: Emanuel Gomez
 
- //* Este archivo implementa una calculadora que suma, resta, multiplica y divide.
+ #* Este archivo implementa una calculadora que suma, resta, multiplica y divide.
 '''
 ```
 
@@ -31,19 +31,19 @@ Incluye este bloque al inicio de cada archivo para identificar al autor y la fun
 ## Uso de Better Comments
 Para organizar y entender el codigo, utiliza colores con Better Comments:
 
-1. **//! - Titulos (Amarillo):** Para titulos o secciones principales.
+1. **#! - Titulos (Amarillo):** Para titulos o secciones principales.
    ```python
-   //! Operaciones Matematicas
+   #! Operaciones Matematicas
    ```
 
-2. **//? - Subtitulos (Azul):** Para describir librerias, variables, metodos o secciones especificas.
+2. **#? - Subtitulos (Azul):** Para describir librerias, variables, metodos o secciones especificas.
    ```python
-   //? Importacion de librerias
+   #? Importacion de librerias
    ```
 
-3. **//* - Explicaciones detalladas (Verde):** Para detallar lo que hace cada parte del codigo.
+3. **#* - Explicaciones detalladas (Verde):** Para detallar lo que hace cada parte del codigo.
    ```python
-   //* Este for itera sobre la lista y los imprime.
+   #* Este for itera sobre la lista y los imprime.
    for num in numeros:
        print(num)
    ```
@@ -63,7 +63,7 @@ Para organizar y entender el codigo, utiliza colores con Better Comments:
 - Usa **snake_case** y comenta su proposito.
 - **Ejemplo:**
   ```python
-  //? Calcula el area de un rectangulo
+  #? Calcula el area de un rectangulo
   def calcular_area_rectangulo(base, altura):
       return base * altura
   ```
@@ -73,7 +73,7 @@ Para organizar y entender el codigo, utiliza colores con Better Comments:
 - **Ejemplo:**
   ```python
   class Calculadora:
-      //* Inicializa los valores
+      #* Inicializa los valores
       def __init__(self, modelo):
           self.modelo = modelo
   ```
@@ -106,23 +106,23 @@ Para organizar y entender el codigo, utiliza colores con Better Comments:
 
 ```python
 '''
- //! Gareth
- //? Grupo: 544
- //? Profesor: Profe Laura
+ #! Gareth
+ #? Grupo: 544
+ #? Profesor: Profe Laura
 
- //* Calcula areas de figuras geometricas.
+ #* Calcula areas de figuras geometricas.
 '''
 
-//! Definicion de funciones
+#! Definicion de funciones
 def calcular_area_circulo(radio):
-    //* Calcula el area de un circulo dado su radio.
+    #* Calcula el area de un circulo dado su radio.
     return math.pi * radio ** 2
 
-//! Programa principal
+#! Programa principal
 if __name__ == "__main__":
-    //? Variables principales
+    #? Variables principales
     radio = float(input("Ingresa el radio del circulo: "))
-    //* Llama a la funcion para calcular el area
+    #* Llama a la funcion para calcular el area
     area = calcular_area_circulo(radio)
     print(f"Area: {area}")
 ```
