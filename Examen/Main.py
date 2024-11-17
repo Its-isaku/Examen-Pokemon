@@ -13,24 +13,32 @@ import random as rd #* Libreria para generar numeros aleatorios
 #? Creacion de objetos
 
 #? Funciones
-def menu_principal(): #* Muestra el menu principal del juego
-    print("||--------Opciones para Pokemon---------||")
+def Detalles_Pokemon(): #? Muestra los detalles de un Pokemon | Recibe un objeto Pokemon para mostrar sus detalles 
+    #TODO: necesita un objeto pokemon para mostrar sus detalles (Falta ezequiel y sofia)
+    pass
+
+def Pokemones_Capturados(): #? Muestra la lista de Pokemones capturados
+    
+    for i in Lista_Pokemones: #* Ciclo para mostrar una lista de los Pokemones capturados
+        print(Detalles_Pokemon(i)) #* Muestra los detalles de cada Pokemon capturado
+        
+def menu_principal(): #? Muestra el menu principal del juego
+    
+    print("\n||--------Opciones para Pokemon---------||")
     print("|| 1 -> Crear Pokemon enemigos          ||")
     print("|| 2 -> Simular Batalla                 ||")
     print("|| 3 -> Mostrar Pokemone Capturados     ||")
     print("|| 4 -> Actulizar Detalles devPokemon   ||")
     print("|| 5 -> Entrenar Pokemon                ||")
     print("|| 9 -> Salir                           ||")
-    print("||--------------------------------------||")
+    print("||--------------------------------------||\n")
     
     opcion = int(input("\nIngrese opcion: "))
     return opcion
 
-def Detalles_Pokemon(): #* Muestra los detalles de un Pokemon
-    pass
-
-def menu_elegir_pokemon():  #* Muestra el menu para elegir el pokemon inicial
-    print("||------------------Menu------------------||")
+def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
+    
+    print("\n||------------------Menu------------------||")
     print("||        Aun no tienes un Pokemon        ||")
     print("||    Elige a tu pokemon para iniciar!    ||")
     print("||****************************************||")
@@ -38,61 +46,141 @@ def menu_elegir_pokemon():  #* Muestra el menu para elegir el pokemon inicial
     print("|| 2 -> Charmander(Fuego)                 ||")
     print("|| 3 -> Shinx(Electrico)                  ||")
     print("|| 4 -> Bulbasaur(Hierba)                 ||")
-    print("||----------------------------------------||")
+    print("||----------------------------------------||\n")
     
     while True:
         
         opc = int(input("\nIngrese opcion: "))
         
         if opc == 1:
-            # muestra los detalles del pokemon y pregunta si esta seguro de elegitlo
-            # si esta seguro se crea el objeto pokemon y se retorna
-            pass
+            Detalles_Pokemon() #* Muestra los detalles de un Pokemon
+            eleccion = input("\nEstas seguro de tu eleccion? \n")
+            if eleccion == "si":
+                print("\nHas elegido a Squirtle!\n")
+                return "Squirtle" #TODO: Retorna el objeto Pokemon elegido
+            else:
+                continue
     
         elif opc == 2:
-            # muestra los detalles del pokemon y pregunta si esta seguro de elegitlo
-            # si esta seguro se crea el objeto pokemon y se retorna
-            pass
+            Detalles_Pokemon() #* Muestra los detalles de un Pokemon
+            eleccion = input("\nEstas seguro de tu eleccion? \n")
+            if eleccion == "si":
+                print("\nHas elegido a Charmander!\n")
+                return "Charmander" #TODO: Retorna el objeto Pokemon elegido
+            else:
+                continue
         
         elif opc == 3:
-            # muestra los detalles del pokemon y pregunta si esta seguro de elegitlo
-            # si esta seguro se crea el objeto pokemon y se retorna
-            pass
+            Detalles_Pokemon() #* Muestra los detalles de un Pokemon
+            eleccion = input("\nEstas seguro de tu eleccion? \n")
+            if eleccion == "si":
+                print("\nHas elegido a Shinx!\n")
+                return "Shinx" #TODO: Retorna el objeto Pokemon elegido
+            else:
+                continue
         
         elif opc == 4:
-            # muestra los detalles del pokemon y pregunta si esta seguro de elegitlo
-            # si esta seguro se crea el objeto pokemon y se retorna
-            pass
+            Detalles_Pokemon() #* Muestra los detalles de un Pokemon
+            eleccion = input("\nEstas seguro de tu eleccion? \n")
+            if eleccion == "si":
+                print("\nHas elegido a Bulbasaur!\n")
+                return "Bulbasaur" #TODO: Retorna el objeto Pokemon elegido
+            else:
+                continue
         
         else:
             print("\nOpcion no valida!\n")
             continue
         
 
-def Menu_Entrenar_Pokemon(): #* Muestra el menu para entrenar a un Pokemon
-    pass
+def Menu_Entrenar_Pokemon(): #? Muestra el menu para entrenar a un Pokemon
+    
+    Pokemones_Capturados() #* Muestra la lista de Pokemones capturados
+    
+    pokemon_en_entrenamiento = input("Que pokemon deseas entrenar?") #* Pregunta al usuario que Pokemon desea entrenar
+    
+    print("\n||--------Opciones para Pokemon---------||")
+    print("|| 1 -> Entrenar Vida                   ||")
+    print("|| 2 -> Entrenar Ataque                 ||")
+    print("|| 3 -> Entrenar Defensa                ||")
+    print("|| 4 -> Entrenar                        ||") #TODO no se si se necesita entrenar el ataque especial(Falta ezequiel y sofia)
+    print("|| 9 -> Salir                           ||")
+    print("||--------------------------------------||\n")
+    
+    while True:
+        
+        opc = int(input("\nIngrese opcion: "))
+        
+        if opc == 1: #* Metodo para entrenar la vida de un Pokemon
+            #TODO: subir_Vida(Nombre del objeto Pokemon) 
+            pass
+    
+        elif opc == 2:  #* Metodo para entrenar el ataque de un Pokemon
+            #TODO: subir_Ataque(Nombre del objeto Pokemon))
+            pass
+        
+        elif opc == 3:  #* Metodo para entrenar la defensa de un Pokemon
+            #TODO: subir_Defensa(Nombre del objeto Pokemon))
+            pass
+        
+        elif opc == 4:  #* Metodo pendiente 
+            pass
+        
+        else:
+            print("\nOpcion no valida!\n")
+            continue
 
-def Entrenar_Pokemon(): #* Entrena los niveles de ataque, defensa y vida de un Pokemon
-    pass
+def Menu_Actualizar_Pokemon(): #? Muestra el menu para actualizar los detalles de un Pokemon
+    
+    Pokemones_Capturados() #* Muestra la lista de Pokemones capturados
+    
+    pokemon_para_actualizar = input("Que pokemon deseas actualizar?") #* Pregunta al usuario que Pokemon desea entrenar
+    
+    print("\n||--------Opciones para Pokemon---------||")
+    print("|| 1 -> actualizar Vida                   ||")
+    print("|| 2 -> actualizar Ataque                 ||")
+    print("|| 3 -> actualizar Defensa                ||")
+    print("|| 4 -> actualizar                        ||") #TODO no se si se necesita entrenar el ataque especial(Falta ezequiel y sofia)
+    print("|| 9 -> Salir                           ||")
+    print("||--------------------------------------||\n")
+    
+    while True:
+        
+        opc = int(input("\nIngrese opcion: "))
+        
+        if opc == 1: #* Metodo para entrenar la vida de un Pokemon
+            #TODO: actualizar_Vida(Nombre del objeto Pokemon) 
+            pass
+    
+        elif opc == 2:  #* Metodo para entrenar el ataque de un Pokemon
+            #TODO: actualizar_Ataque(Nombre del objeto Pokemon))
+            pass
+        
+        elif opc == 3:  #* Metodo para entrenar la defensa de un Pokemon
+            #TODO: actualizar_Defensa(Nombre del objeto Pokemon))
+            pass
+        
+        elif opc == 4:  #* Metodo pendiente 
+            pass
+        
+        else:
+            print("\nOpcion no valida!\n")
+            continue
 
-def Menu_Actualizar_Pokemon(): #* Muestra el menu para actualizar los detalles de un Pokemon
-    pass
+def Crear_Pokemon_Enemigo(): #? Crea un Pokemon enemigo aleatorio
+    pass #TODO: falta crear este metodo
 
-def Actualizar_Pokemon(): #* Actualiza los detalles de un Pokemon individualmente
-    pass
+def Capturar_Pokemon(): #? Captura un Pokemon enemigo
+    pass #TODO: falta crear este metodo
 
-def Crear_Pokemon_Enemigo(): #* Crea un Pokemon enemigo aleatorio
-    pass
+def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
+    pass #TODO: falta crear este metodo
 
-def Batalla_Pokemon(): #* Simula una batalla entre dos Pokemones
-    pass
-
-def Pokemones_Capturados(): #* Muestra la lista de Pokemones capturados
-    pass
 
 
 
 def Saludo_Inicial():#? Saluda al usuario por primera vez en el juego, mostrando el nombre del juego y una breve descripcion
+    
     print("\n||------------------------------Examen-Pokemon------------------------------||\n")
     nombre = input("Ingrese su nombre: ")
     print(f"\nBienvenido al Juego {nombre}!")
@@ -152,3 +240,17 @@ while True:
         print("\nOpcion no valida!\n")
 
 print("\n||--------------------------------------------------------------------------||\n")
+
+
+#TODO: Falta crear los metodos de las siguientes funciones:
+#? Crear_Pokemon_Enemigo()
+#? Capturar_Pokemon()
+#? Batalla_Pokemon()
+
+#TODO: falta agregar funcionalidades a las siguientes funciones(falta ezequiel y sofia):
+#? Detalles_Pokemon()
+#? Menu_Entrenar_Pokemon()
+#? Menu_Actualizar_Pokemon()
+#? menu_elegir_pokemon()
+
+#TODO: Falta agregar la funciones a el Main switch
