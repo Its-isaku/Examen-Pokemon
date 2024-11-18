@@ -77,3 +77,16 @@ class Base(ABC):    #* Clase base de la que heredan los pokemones
                 print("¡Tu Pokémon ha evolucionado!")
             elif self._evol >= 3:
                 print("¡Tu Pokémon ha evolucionado a Godmode!")
+                
+#? Métodos abstractos de Entrenamiento
+    def subirAtaque(self):
+        self._ataque += 10
+        print(f"Ataque incrementado en 5. Nuevo ataque: {self._ataque}")
+
+    def subirDefensa(self):
+        self._defensa += 10
+        print(f"Defensa incrementada en 5. Nueva defensa: {self._defensa}")
+
+    def subirVida(self):
+        self._vida += 10
+        print(f"Vida incrementada en 10. Nueva vida: {self._vida}")

@@ -21,17 +21,16 @@ lista_pokemones = [] #* Lista para almacenar los Pokemones capturados
 
 #! Creacion de Objetos
 #? Creacion de Pokemones Principales
-#TODO debo agregarles descripciones
-lista_pokemones_iniciales.append(Agua(nombre="Squirtel", vida=100, ataque=10, defensa=10, ataque_agua="Hidrobomba")) #* Creacion de un objeto de tipo Agua
-lista_pokemones_iniciales.append(Fuego(nombre="Charmander", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas")) #* Creacion de un objeto de tipo Fuego
-lista_pokemones_iniciales.append(Electro(nombre="Shinx", vida=100, ataque=10, defensa=10, ataque_electro="Rayo")) #* Creacion de un objeto de tipo Electro
-lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa")) #* Creacion de un objeto de tipo Hierba
+lista_pokemones_iniciales.append(Agua(nombre="Squirtel", desc=" Pokémon de tipo Agua con una excelente defensa y gran energía.", vida=100, ataque=10, defensa=10, ataque_agua="Hidrobomba")) #* Creacion de un objeto de tipo Agua
+lista_pokemones_iniciales.append(Fuego(nombre="Charmander", desc="Pokémon de tipo Fuego ágil y lleno de determinación.", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_iniciales.append(Electro(nombre="Shinx", desc=" Pokémon de tipo Electro pequeño pero lleno de energía eléctrica.", vida=100, ataque=10, defensa=10, ataque_electro="Rayo")) #* Creacion de un objeto de tipo Electro
+lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur", desc=" Pokémon de tipo Hierba con un gran equilibrio entre fuerza y resistencia.", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa")) #* Creacion de un objeto de tipo Hierba
 
 #? Creacion de Pokemones Enemigos  
-lista_pokemones_enemigos.append(Fuego(nombre="Vulpix", vida=250, ataque=40, defensa=30, ataque_fuego="Lanzallamas")) #* Creacion de un objeto de tipo Fuego
-lista_pokemones_enemigos.append(Agua(nombre="Golduck", vida=350, ataque=30, defensa=30, ataque_agua="Hidrobomba")) #* Creacion de un objeto de tipo Agua
-lista_pokemones_enemigos.append(Electro(nombre="Electrabuzz", vida=450, ataque=50, defensa=60, ataque_electro="Rayo")) #* Creacion de un objeto de tipo Electro
-lista_pokemones_enemigos.append(Hierba(nombre="Gloom", vida=150, ataque=20, defensa=25, ataque_hierba="Latigo Cepa")) #* Creacion de un objeto de tipo Hierba
+lista_pokemones_enemigos.append(Fuego(nombre="Vulpix", desc="Pokémon de tipo Fuego con un porte elegante y gran agilidad.", vida=250, ataque=40, defensa=30, ataque_fuego="Lanzallamas")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_enemigos.append(Agua(nombre="Golduck", desc="Pokémon de tipo Agua resistente y muy versátil en combate.", vida=350, ataque=30, defensa=30, ataque_agua="Hidrobomba")) #* Creacion de un objeto de tipo Agua
+lista_pokemones_enemigos.append(Electro(nombre="Electrabuzz", desc="Pokémon de tipo Electro con una fuerza impresionante y energía constante.", vida=450, ataque=50, defensa=60, ataque_electro="Rayo")) #* Creacion de un objeto de tipo Electro
+lista_pokemones_enemigos.append(Hierba(nombre="Gloom", desc=" Pokémon de tipo Hierba con un estilo peculiar y muy persistente", vida=150, ataque=20, defensa=25, ataque_hierba="Latigo Cepa")) #* Creacion de un objeto de tipo Hierba
 
 #? Funciones
 
@@ -172,13 +171,13 @@ def Menu_Entrenar_Pokemon_Manual():
                 try:
                     opc = int(input("\nIngrese opción: "))
                     if opc == 1:
-                        pokemon_en_entrenamiento.subir_vida()
+                        pokemon_en_entrenamiento.subirVida()
                         print(f"La vida de {pokemon_en_entrenamiento.nombre} ha aumentado.")
                     elif opc == 2:
-                        pokemon_en_entrenamiento.subir_ataque()
+                        pokemon_en_entrenamiento.subirAtaque()
                         print(f"El ataque de {pokemon_en_entrenamiento.nombre} ha aumentado.")
                     elif opc == 3:
-                        pokemon_en_entrenamiento.subir_defensa()
+                        pokemon_en_entrenamiento.subirDefensa()
                         print(f"La defensa de {pokemon_en_entrenamiento.nombre} ha aumentado.")
                     elif opc == 9:
                         print("Saliendo del entrenamiento.")
@@ -209,19 +208,20 @@ def Menu_Actualizar_Pokemon():  # Muestra el menú para actualizar los detalles 
 def Crear_Pokemon_Enemigo(): #? Crea un Pokemon enemigo aleatorio
     tipo = input("Que tipo de Pokemon deseas crear? (Agua, Fuego, Electro, Hierba): ")
     nombre = input("Nombre del Pokemon: ")
+    descripcion = input("Descripcion del Pokemon: ")
     vida = int(input("Vida del Pokemon(entre 100 - 500): "))
     ataque = int(input("Ataque del Pokemon(entre 10 - 100): "))
     defensa = int(input("Defensa del Pokemon(entre 10 - 100): "))
     ataque_especial = input("Ataque Especial del Pokemon: ")
     
     if tipo == "Agua":
-        lista_pokemones_enemigos.append(Agua(nombre=nombre, vida=vida, ataque=ataque, defensa=defensa, ataque_agua=ataque_especial)) #* Creacion de un objeto de tipo Agua
+        lista_pokemones_enemigos.append(Agua(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_agua=ataque_especial)) #* Creacion de un objeto de tipo Agua
     elif tipo == "Fuego":
-        lista_pokemones_enemigos.append(Fuego(nombre=nombre, vida=vida, ataque=ataque, defensa=defensa, ataque_fuego=ataque_especial)) #* Creacion de un objeto de tipo Fuego
+        lista_pokemones_enemigos.append(Fuego(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_fuego=ataque_especial)) #* Creacion de un objeto de tipo Fuego
     elif tipo == "Electro":
-        lista_pokemones_enemigos.append(Electro(nombre=nombre, vida=vida, ataque=ataque, defensa=defensa, ataque_electro=ataque_especial)) #* Creacion de un objeto de tipo Electro
+        lista_pokemones_enemigos.append(Electro(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_electro=ataque_especial)) #* Creacion de un objeto de tipo Electro
     elif tipo == "Hierba":
-        lista_pokemones_enemigos.append(Hierba(nombre=nombre, vida=vida, ataque=ataque, defensa=defensa, ataque_hierba=ataque_especial)) #* Creacion de un objeto de tipo Hierba
+        lista_pokemones_enemigos.append(Hierba(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_hierba=ataque_especial)) #* Creacion de un objeto de tipo Hierba
 
 def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jugador):  #? Captura un Pokemon enemigo
     
@@ -243,14 +243,6 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
     #? Mensaje para jugador
     print("\n||------------------Batalla------------------||")
     print("\nHaz entrado a un combate!\n")
-    
-    #? Explica debelilidades de los Pokemones
-    print("\n||------------------Debilidades------------------||")
-    print("|| Agua -> Fuego                                ||")
-    print("|| Fuego -> Hierba                              ||")
-    print("|| Electro -> Agua                              ||")
-    print("|| Hierba -> Electro                            ||")
-    print("||-----------------------------------------------||\n")
     
     #? Muestra el pokemon enemigo con el que se va a pelear
     print("\n||------------------Pokemon Enemigo------------------||\n")

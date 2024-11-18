@@ -30,15 +30,15 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
     @property
     def defensa(self):
         return self._defensa
-    
+
     @defensa.setter
     def defensa(self, value):
         self._defensa = value
-    
+
     @property
     def vida(self):
         return self._vida
-    
+
     @vida.setter
     def vida(self, value):
         self._vida = value
@@ -66,15 +66,15 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
             self._level = 0
             self._evol += 1
 
-    #? Métodos de mejora
-    def subir_ataque(self): #* Método que aumenta el ataque del pokemon
+    #? Métodos de Entrenamiento
+    def subirAtaque(self):
         self._ataque += 10
-        print(f"Ataque aumentado. \nNuevo ataque: {self._ataque}")
+        print(f"Ataque incrementado en 5. Nuevo ataque: {self._ataque}")
 
-    def subir_defensa(self): #* Método que aumenta la defensa del pokemon
+    def subirDefensa(self):
         self._defensa += 10
-        print(f"Defensa aumentada. \nNueva defensa: {self._defensa}")
+        print(f"Defensa incrementada en 5. Nueva defensa: {self._defensa}")
 
-    def subir_vida(self):    #* Método que aumenta la vida del pokemon
+    def subirVida(self):
         self._vida += 10
-        print(f"Vida aumentada. \nNueva vida: {self._vida}")
+        print(f"Vida incrementada en 10. Nueva vida: {self._vida}")
