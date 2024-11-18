@@ -11,15 +11,50 @@ from abc import ABC, abstractmethod
 #? Clase abstracta
 class Base(ABC):    #* Clase base de la que heredan los pokemones
     def __init__(self, nombre="N/A", desc="N/A", ataque=0, defensa=0, vida=0, level=1, evol=1, atrapado=False):
-        self.nombre = nombre
-        self.desc = desc
-        self.ataque = ataque
-        self.defensa = defensa
-        self.vida = vida
-        self.level = level
-        self.evol = evol
-        self.atrapado = atrapado
+        #? Atributos encapsulados
+        self._nombre = nombre
+        self._desc = desc
+        self._ataque = ataque
+        self._defensa = defensa
+        self._vida = vida
+        self._level = level
+        self._evol = evol
+        self._atrapado = atrapado
 
+    #? Getters y Setters
+    @property
+    def nombre(self):
+        return self._nombre
+
+    @property
+    def desc(self):
+        return self._desc
+
+    @property
+    def ataque(self):
+        return self._ataque
+
+    @property
+    def defensa(self):
+        return self._defensa
+
+    @property
+    def vida(self):
+        return self._vida
+
+    @property
+    def atrapado(self):
+        return self._atrapado
+    
+    @vida.setter
+    def vida(self, valor):
+        self._vida = max(0, valor)    #* Asegura que la vida no sea negativa
+
+    @atrapado.setter
+    def atrapado(self, estado):
+        self._atrapado = estado    #* Cambia el estado de atrapado
+
+    #? Métodos abstractos
     @abstractmethod
     def hablar(self):   #* Método abstracto que imprime un mensaje del pokemon
         pass
@@ -28,16 +63,17 @@ class Base(ABC):    #* Clase base de la que heredan los pokemones
     def actualizar(self):   #* Método abstracto que actualiza los atributos del pokemon
         pass
     
+    #? Método para actualizar nivel
     def actualizar_lvl(self):   #* Método que actualiza el nivel del pokemon
-        self.level += 1
-        while self.level >= 100: 
-            self.level = 1 #* cuando llega al nivel 100 o mas, regresar al nivel 1
-            self.evol += 1 #* aumentar evol dependiendo 
+        self._level += 1
+        if self._level >= 100: 
+            self._level = 1 #* Cuando llega al nivel 100 o más, regresa al nivel 1
+            self._evol += 1 #* Aumenta la evolución
 
-            #* indicar en que nivel de evol va
-            if self.evol == 1:
+            #* Indica en qué nivel de evolución va
+            if self._evol == 1:
                 print("Pokemon bebé")
-            elif self.evol == 2:
+            elif self._evol == 2:
                 print("¡Tu Pokémon ha evolucionado!")
-            elif self.evol >= 3:
+            elif self._evol >= 3:
                 print("¡Tu Pokémon ha evolucionado a Godmode!")
