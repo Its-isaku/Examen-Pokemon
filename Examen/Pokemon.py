@@ -1,7 +1,22 @@
+'''
+#! Ezequel Villa
+#? Grupo: 544
+#? Profesor: Emanuel Gomez
 
-# Clase concreta
-class Pokemon(PokemonBase):
-    def detallesPokemon(self):
+#* Creacion de la clase Pokemon y sus metodos
+'''
+#? Librerias
+from PokemonBase import Base
+
+#? Clase concreta
+class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
+    
+    #? Constructor
+    def __init__(self, nombre="N/A", desc="N/A", ataque=0, defensa=0, vida=0, level=1, evol=1, atrapado=False):
+        super().__init__(nombre, desc, ataque, defensa, vida, level, evol, atrapado)
+        
+    #? Método para mostrar los atributos del pokemon
+    def detalles_pokemon(self): #* Método que imprime los atributos del pokemon
         print(f"Nombre: {self.nombre}")
         print(f"Descripción: {self.desc}")
         print(f"Ataque: {self.ataque}")
@@ -11,48 +26,38 @@ class Pokemon(PokemonBase):
         print(f"Evolución: {self.evol}")
         print(f"Atrapado: {'Sí' if self.atrapado else 'No'}")
 
-    def hablar(self):
-        print(f"{self.nombre} dice: ¡Pika Pika!")
+    #? Métodos para hablar
+    def hablar(self): #* Método que imprime un meensaje del pokemon
+        print(f"¡{self.nombre}, {self.nombre}, {self.nombre}!")
 
-    def entrenar(self):
+    #? Método de actualización completa
+    def actualizar(self, boost_ataque=10, boost_defensa=10, boost_vida=10): #* Método que actualiza todos los atributos del pokemon
+        self.ataque += boost_ataque
+        self.defensa += boost_defensa
+        self.vida += boost_vida
+        print(f"Atributos actualizados: \nAtaque: {self.ataque} \nDefensa: {self.defensa} \nVida: {self.vida}")
+    
+    #? Método para entrenar
+    def entrenar(self): #* Método que aumenta los atributos del pokemon
         self.ataque += 10
         self.defensa += 10
         self.vida += 10
         self.level += 5
-        print(f"{self.nombre} ha entrenado. Nivel actual: {self.level}")
+        print(f"{self.nombre} ha entrenado!.\nNivel actual: {self.level}\n")
         if self.level >= 100:
-            print(f"¡{self.nombre} ha evolucionado!")
+            print(f"¡\n{self.nombre} ha evolucionado!\n")
             self.level = 0
             self.evol += 1
 
-    # Métodos de mejora
-    def subirAtaque(self):
+    #? Métodos de mejora
+    def subir_ataque(self): #* Método que aumenta el ataque del pokemon
         self.ataque += 10
         print(f"Ataque aumentado. Nuevo ataque: {self.ataque}")
 
-    def subirDefensa(self):
+    def subir_defensa(self): #* Método que aumenta la defensa del pokemon
         self.defensa += 10
         print(f"Defensa aumentada. Nueva defensa: {self.defensa}")
 
-    def subirVida(self):
+    def subir_vida(self):    #* Método que aumenta la vida del pokemon
         self.vida += 10
         print(f"Vida aumentada. Nueva vida: {self.vida}")
-
-    # Método de actualización completa
-    def actualizar(self, boost_ataque=10, boost_defensa=10, boost_vida=10):
-        self.ataque += boost_ataque
-        self.defensa += boost_defensa
-        self.vida += boost_vida
-        print(f"Atributos actualizados: Ataque: {self.ataque}, Defensa: {self.defensa}, Vida: {self.vida}")
-
-# Ejemplo de uso
-pikachu = Pokemon(nombre="Pikachu", desc="Pokémon eléctrico", ataque=55, defensa=40, vida=35)
-pikachu.detallesPokemon()
-pikachu.hablar()
-pikachu.entrenar()
-pikachu.subirAtaque()
-pikachu.subirDefensa()
-pikachu.subirVida()
-pikachu.actualizar()  # Usa el método de actualización completa
-pikachu.detallesPokemon()
-
