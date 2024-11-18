@@ -25,6 +25,23 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
         print(f"Nivel: {self._level}")
         print(f"Evolución: {self._evol}")
         print(f"Atrapado: {'Sí' if self.atrapado else 'No'}")
+        
+    #?Getters y Setters
+    @property
+    def defensa(self):
+        return self._defensa
+    
+    @defensa.setter
+    def defensa(self, value):
+        self._defensa = value
+    
+    @property
+    def vida(self):
+        return self._vida
+    
+    @vida.setter
+    def vida(self, value):
+        self._vida = value
 
     #? Métodos para hablar
     def hablar(self): #* Método que imprime un mensaje del pokemon

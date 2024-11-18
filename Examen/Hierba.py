@@ -6,10 +6,10 @@
 #* Creacion de la clase Hierba
 '''
 #? Librerias
-from PokemonBase import Base    #* Importar la clase Base de PokemonBase
+from Pokemon import Pokemon   #* Importar la clase Base de PokemonBase
 
 #? Clase Hierba
-class Hierba(Base):  #* Clase de pokémon de tipo hierba
+class Hierba(Pokemon):  #* Clase de pokémon de tipo hierba
     def __init__(self, ataque_hierba, **kwargs):
         super().__init__(**kwargs) #* uso de kwargs para solo pasar los parametros que se necesitan
         self.ataque_hierba = ataque_hierba #* nombre del ataque especial de tipo hierba

@@ -6,10 +6,10 @@
 #* Creacion de la clase Fuego
 '''
 #? Librerias
-from PokemonBase import Base    #* Importar la clase Base de PokemonBase
+from Pokemon import Pokemon   #* Importar la clase Base de PokemonBase
 
 #? Clase Fuego
-class Fuego(Base):  #* Clase de pokémon de tipo fuego
+class Fuego(Pokemon):  #* Clase de pokémon de tipo fuego
     def __init__(self, ataque_fuego, **kwargs):
         super().__init__(**kwargs) #* uso de kwargs para solo pasar los parametros que se necesitan
         self.ataque_fuego = ataque_fuego #* nombre del ataque especial de tipo fuego

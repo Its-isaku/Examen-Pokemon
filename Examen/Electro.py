@@ -6,10 +6,10 @@
 #* Creacion de la clase Electro
 '''
 #? Librerias
-from PokemonBase import Base    #* Importar la clase Base de PokemonBase
+from Pokemon import Pokemon   #* Importar la clase Base de PokemonBase
 
 #? Clase Electro
-class Electro(Base): #* Clase de pokémon de tipo electrico
+class Electro(Pokemon): #* Clase de pokémon de tipo electrico
     def __init__(self, ataque_electro, **kwargs):
         super().__init__(**kwargs) #* uso de kwargs para solo pasar los parametros que se necesitan
         self.ataque_electro = ataque_electro #* nombre del ataque especial de tipo electro

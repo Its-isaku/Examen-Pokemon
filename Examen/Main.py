@@ -7,10 +7,10 @@
 '''
 #? Librerias
 import random as rd
-from Examen import Agua #* Libreria para generar numeros aleatorios
-from Examen import Electro #* Libreria para generar numeros aleatorios
-from Examen import Fuego #* Libreria para generar numeros aleatorios
-from Examen import Hierba #* Libreria para generar numeros
+from Agua import Agua #* Libreria para generar numeros aleatorios
+from Electro import Electro #* Libreria para generar numeros aleatorios
+from Fuego import Fuego #* Libreria para generar numeros aleatorios
+from Hierba import Hierba #* Libreria para generar numeros
 
 #? Variales
 lista_pokemones_iniciales = [] #* Lista para almacenar los Pokemones iniciales(Para elegir uno)
@@ -21,14 +21,15 @@ lista_pokemones = [] #* Lista para almacenar los Pokemones capturados
 
 #! Creacion de Objetos
 #? Creacion de Pokemones Principales
+#TODO debo agregarles descripciones
 lista_pokemones_iniciales.append(Agua(nombre="Squirtel", vida=100, ataque=10, defensa=10, ataque_agua="Hidrobomba")) #* Creacion de un objeto de tipo Agua
 lista_pokemones_iniciales.append(Fuego(nombre="Charmander", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas")) #* Creacion de un objeto de tipo Fuego
 lista_pokemones_iniciales.append(Electro(nombre="Shinx", vida=100, ataque=10, defensa=10, ataque_electro="Rayo")) #* Creacion de un objeto de tipo Electro
 lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa")) #* Creacion de un objeto de tipo Hierba
 
 #? Creacion de Pokemones Enemigos  
-lista_pokemones_enemigos.append(Fuego(nombre="Vulpix", vida=250, ataque=40, defensa=30, ataque_agua="Lanzallamas")) #* Creacion de un objeto de tipo Agua
-lista_pokemones_enemigos.append(Agua(nombre="Golduck", vida=350, ataque=30, defensa=30, ataque_fuego="Hidrobomba")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_enemigos.append(Fuego(nombre="Vulpix", vida=250, ataque=40, defensa=30, ataque_fuego="Lanzallamas")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_enemigos.append(Agua(nombre="Golduck", vida=350, ataque=30, defensa=30, ataque_agua="Hidrobomba")) #* Creacion de un objeto de tipo Agua
 lista_pokemones_enemigos.append(Electro(nombre="Electrabuzz", vida=450, ataque=50, defensa=60, ataque_electro="Rayo")) #* Creacion de un objeto de tipo Electro
 lista_pokemones_enemigos.append(Hierba(nombre="Gloom", vida=150, ataque=20, defensa=25, ataque_hierba="Latigo Cepa")) #* Creacion de un objeto de tipo Hierba
 
@@ -41,7 +42,7 @@ def Pokemones_Capturados():  #? Muestra la lista de Pokemones capturados
         return
 
     for idx, pokemon in enumerate(lista_pokemones, start=1):
-        print(f"|| Pokémon #{idx} ||")
+        print(f"|| Pokémon #{idx} ||\n")
         pokemon.detalles_pokemon()  #* Llama al método detalles_pokemon
         
 def menu_principal():  #? Muestra el menu principal del juego
@@ -78,19 +79,22 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
 
     while True:
         try:
-            opc = int(input("\nIngrese opcion: "))
+            opc = int((input("Elige tu Pokémon inicial:")))
+            print("\n||----------------------------------------||\n")
+
             if opc == 1:
                 for i in lista_pokemones_iniciales:
-                    if i.nombre == "Squirtle":
-                        i.detalles_pokemon()  #* Llama al método para mostrar detalles del Pokémon
+                    if i.nombre == "Squirtel":
+                        i.detalles_pokemon()
+                        break
                 eleccion = input("\n¿Estas seguro de tu eleccion? (si/no): ").lower()
                 if eleccion == "si":
-                    for i in lista_pokemones_iniciales:  #* Actualiza el estado de atrapado
-                        if i.nombre == "Squirtle":
+                    for i in lista_pokemones_iniciales:
+                        if i.nombre == "Squirtel":
                             i.atrapado = True
-                    print("\n¡Has elegido a Squirtle!\n")
-                    lista_pokemones.append(i)
-                    return i
+                            lista_pokemones.append(i)
+                            print("\n¡Has elegido a Squirtel!\n")
+                            return i
                 else:
                     continue
 
@@ -98,14 +102,15 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                 for i in lista_pokemones_iniciales:
                     if i.nombre == "Charmander":
                         i.detalles_pokemon()
+                        break
                 eleccion = input("\n¿Estas seguro de tu eleccion? (si/no): ").lower()
                 if eleccion == "si":
                     for i in lista_pokemones_iniciales:
                         if i.nombre == "Charmander":
                             i.atrapado = True
-                    print("\n¡Has elegido a Charmander!\n")
-                    lista_pokemones.append(i)
-                    return i
+                            lista_pokemones.append(i)
+                            print("\n¡Has elegido a Charmander!\n")
+                            return i
                 else:
                     continue
 
@@ -113,14 +118,15 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                 for i in lista_pokemones_iniciales:
                     if i.nombre == "Shinx":
                         i.detalles_pokemon()
+                        break
                 eleccion = input("\n¿Estas seguro de tu eleccion? (si/no): ").lower()
                 if eleccion == "si":
                     for i in lista_pokemones_iniciales:
                         if i.nombre == "Shinx":
                             i.atrapado = True
-                    print("\n¡Has elegido a Shinx!\n")
-                    lista_pokemones.append(i)
-                    return i
+                            lista_pokemones.append(i)
+                            print("\n¡Has elegido a Shinx!\n")
+                            return i
                 else:
                     continue
 
@@ -128,14 +134,15 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                 for i in lista_pokemones_iniciales:
                     if i.nombre == "Bulbasaur":
                         i.detalles_pokemon()
+                        break
                 eleccion = input("\n¿Estas seguro de tu eleccion? (si/no): ").lower()
                 if eleccion == "si":
                     for i in lista_pokemones_iniciales:
                         if i.nombre == "Bulbasaur":
                             i.atrapado = True
-                    print("\n¡Has elegido a Bulbasaur!\n")
-                    lista_pokemones.append(i)
-                    return i
+                            lista_pokemones.append(i)
+                            print("\n¡Has elegido a Bulbasaur!\n")
+                            return i
                 else:
                     continue
 
@@ -256,7 +263,7 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
     Pokemones_Capturados() #* Muestra la lista de Pokemones capturados
     
     try:    #* Muetsra un mensaje de error si la seleccion no es valida
-        eleccion = int(input("Selecciona el número de tu Pokémon: ")) - 1
+        eleccion = int(input("\nSelecciona tu Pokémon para la batalla: ")) - 1
         pokemon_jugador_combate = lista_pokemones[eleccion]  #* Selecciona el Pokémon del jugador
     except (ValueError, IndexError):
         print("Selección inválida. Por favor, inténtalo de nuevo.")
@@ -273,11 +280,15 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
     defensa_activa_jugador = False
     defensa_activa_enemigo = False
     
+    #? boolean para ver si ej jugador gano la batalla
+    gano = False
+    
+    #? se inicializa el ciclo de la batalla
     while vida_pokemon_jugador > 0 and vida_pokemon_enemigo > 0: #* Ciclo para la batalla
         if turno == 1:
             print("\n||------------------Turno Jugador------------------||")
-            print("|| 1 -> Atacar                                    ||")
-            print("|| 2 -> Defensa                                   ||")
+            print("|| 1 -> Atacar                                     ||")
+            print("|| 2 -> Defensa                                    ||")
             print("||-------------------------------------------------||\n")
             opc = int(input("Que deseas hacer? "))
             
@@ -286,20 +297,17 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
                 if defensa_activa_enemigo:  #* si el enemigo activo su defensa, solo se le resta un 75% del ataque
                     pokemon_enemigo_combate.vida -= pokemon_jugador_combate.ataque * 0.75
                     print(f"El Pokemon enemigo ha recibido {pokemon_jugador_combate.ataque * 0.75} de daño")
-                    print(f"Vida del Pokemon enemigo: {pokemon_enemigo_combate.vida}")
-                    print("||-----------------------------------------------||\n")
+                    print(f"Vida del Pokemon enemigo: {pokemon_enemigo_combate.vida}\n")
                     turno = 2
                 else:
                     pokemon_enemigo_combate.vida -= pokemon_jugador_combate.ataque
                     print(f"El Pokemon enemigo ha recibido {pokemon_jugador_combate.ataque} de daño")
-                    print(f"Vida del Pokemon enemigo: {pokemon_enemigo_combate.vida}")
-                    print("||-----------------------------------------------||\n")
+                    print(f"Vida del Pokemon enemigo: {pokemon_enemigo_combate.vida}\n")
                     turno = 2
             elif opc == 2:
                 print("||------------------Defensa------------------||\n")
                 defensa_activa_jugador = True
                 print("Defensa activada!")
-                print("||-----------------------------------------------||\n")
                 turno = 2
                 
         elif turno == 2:
@@ -312,33 +320,34 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
                 if defensa_activa_jugador:
                     pokemon_jugador_combate.vida -= pokemon_enemigo_combate.ataque * 0.75
                     print(f"Tu Pokemon ha recibido {pokemon_enemigo_combate.ataque * 0.75} de daño")
-                    print(f"Vida de tu Pokemon: {pokemon_jugador_combate.vida}")
-                    print("||-----------------------------------------------||\n")
+                    print(f"Vida de tu Pokemon: {pokemon_jugador_combate.vida}\n")
                     turno = 1
                 else:
                     pokemon_jugador_combate.vida -= pokemon_enemigo_combate.ataque
                     print(f"Tu Pokemon ha recibido {pokemon_enemigo_combate.ataque} de daño")
-                    print(f"Vida de tu Pokemon: {pokemon_jugador_combate.vida}")
-                    print("||-----------------------------------------------||\n")
+                    print(f"Vida de tu Pokemon: {pokemon_jugador_combate.vida}\n")
                     turno = 1
             elif opc == 2:
                 print("||------------------Defensa------------------||\n")
                 defensa_activa_enemigo = True
                 print("Defensa de pokemon enemigo activada!")
-                print("||-----------------------------------------------||\n")
                 turno = 1
     
-    if pokemon_jugador_combate.vida <= 0:
-        print("\nHas perdido la batalla!\n")
-    elif pokemon_enemigo_combate.vida <= 0:
-        print("\n¡Has ganado la batalla!\n")
+        if pokemon_jugador_combate.vida <= 0:
+            print("\nHas perdido la batalla!\n")
+            break
+        elif pokemon_enemigo_combate.vida <= 0:
+            print("\n¡Has ganado la batalla!\n")
+            gano = True
+            break
+        
+    if gano:
         print("||------------------Capturar Pokémon------------------||\n")
-    
-    eleccion = input("¿Deseas capturar al Pokémon enemigo? (si/no): ").lower()
-    if eleccion == "si":
-        Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)  #* Llama a la función de captura
-    else:
-        print("\nNo has capturado al Pokémon enemigo.\n")
+        eleccion = input("¿Deseas capturar al Pokémon enemigo? (si/no): ").lower()
+        if eleccion == "si":
+            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)  #* Llama a la función de captura
+        else:
+            print("\nNo has capturado al Pokémon enemigo.\n")
     
     print("Fin del combate!\n")
     print("||---------------------------------------------------||\n")
@@ -383,17 +392,18 @@ while True:
         elif opc == 3:  #* Mostrar Lista de Pokemones Capturados y sus detalles
             Pokemones_Capturados()  #* Muestra los Pokémon capturados y sus detalles
         
-        elif opc == 4:  #* Método para Entrenar los niveles de ataque, defensa y vida Pokémon
+        elif opc == 4:  #* Método para Actualizar los niveles de ataque, defensa y vida Pokémon individualmente
+            if not lista_pokemones:  # Verifica si el usuario tiene Pokémon capturados
+                print("\nNo tienes Pokémon capturados para actualizar.\n")
+            else:
+                Menu_Actualizar_Pokemon()  #* Llama al menú para actualizar los detalles de un Pokémon
+                
+        elif opc == 5:  #* Método para Entrenar los niveles de ataque, defensa y vida Pokémon
             if not lista_pokemones:  # Verifica si el usuario tiene Pokémon capturados
                 print("\nNo tienes Pokémon capturados para entrenar.\n")
             else:
                 Menu_Entrenar_Pokemon_Manual()  #* Llama al menú para entrenar un Pokémon manualmente
         
-        elif opc == 5:  #* Método para Actualizar los niveles de ataque, defensa y vida Pokémon individualmente
-            if not lista_pokemones:  # Verifica si el usuario tiene Pokémon capturados
-                print("\nNo tienes Pokémon capturados para actualizar.\n")
-            else:
-                Menu_Actualizar_Pokemon()  #* Llama al menú para actualizar los detalles de un Pokémon
         
         else:
             print("\nOpción no válida!\n")
