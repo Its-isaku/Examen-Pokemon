@@ -10,7 +10,7 @@
 from Pokemon import Pokemon
 from Entrenamiento import Entrenamiento
 
-class PokemonConEntrenamiento(Pokemon, Entrenamiento):  #* Clase de pokémon con entrenamiento
+class PokemonConEntrenamiento(Pokemon, Entrenamiento):  #* Clase de pokémon con entrenamiento.
     
     def subirAtaque(self):  #* Método que sube el ataque del pokemon
         self._ataque += 10  

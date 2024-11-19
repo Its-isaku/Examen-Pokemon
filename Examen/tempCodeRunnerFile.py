@@ -1,2 +1,0 @@
-
-                        print("Saliendo del entrenamiento.")

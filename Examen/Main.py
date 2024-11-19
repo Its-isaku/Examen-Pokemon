@@ -7,10 +7,7 @@
 '''
 #? Librerias
 import random as rd
-from Agua import Agua #* Libreria para generar numeros aleatorios
-from Electro import Electro #* Libreria para generar numeros aleatorios
-from Fuego import Fuego #* Libreria para generar numeros aleatorios
-from Hierba import Hierba #* Libreria para generar numeros
+from Skills import Agua, Fuego, Electro, Hierba #* Importar las clases de los pokemones
 
 #? Variales
 lista_pokemones_iniciales = [] #* Lista para almacenar los Pokemones iniciales(Para elegir uno)
@@ -21,7 +18,7 @@ lista_pokemones = [] #* Lista para almacenar los Pokemones capturados
 
 #! Creacion de Objetos
 #? Creacion de Pokemones Principales
-lista_pokemones_iniciales.append(Agua(nombre="Squirtel", desc=" Pokémon de tipo Agua con una excelente defensa y gran energía.", vida=100, ataque=10, defensa=10, ataque_agua="Hidrobomba")) #* Creacion de un objeto de tipo Agua
+lista_pokemones_iniciales.append(Agua(nombre="Spyduck", desc="Dios mismo", vida=100, ataque=999, defensa=999, ataque_agua="waterGun")) #* Creacion de un objeto de tipo Agua
 lista_pokemones_iniciales.append(Fuego(nombre="Charmander", desc="Pokémon de tipo Fuego ágil y lleno de determinación.", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas")) #* Creacion de un objeto de tipo Fuego
 lista_pokemones_iniciales.append(Electro(nombre="Shinx", desc=" Pokémon de tipo Electro pequeño pero lleno de energía eléctrica.", vida=100, ataque=10, defensa=10, ataque_electro="Rayo")) #* Creacion de un objeto de tipo Electro
 lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur", desc=" Pokémon de tipo Hierba con un gran equilibrio entre fuerza y resistencia.", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa")) #* Creacion de un objeto de tipo Hierba
@@ -70,7 +67,7 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
     print("||        Aun no tienes un Pokemon        ||")
     print("||    Elige a tu pokemon para iniciar!    ||")
     print("||****************************************||")
-    print("|| 1 -> Squirtle(Agua)                    ||")
+    print("|| 1 -> Spyduck(Agua)                     ||")
     print("|| 2 -> Charmander(Fuego)                 ||")
     print("|| 3 -> Shinx(Electrico)                  ||")
     print("|| 4 -> Bulbasaur(Hierba)                 ||")
@@ -83,16 +80,16 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
 
             if opc == 1:
                 for i in lista_pokemones_iniciales:
-                    if i.nombre == "Squirtel":
+                    if i.nombre == "Spyduck":
                         i.detalles_pokemon()
                         break
                 eleccion = input("\n¿Estas seguro de tu eleccion? (si/no): ").lower()
                 if eleccion == "si":
                     for i in lista_pokemones_iniciales:
-                        if i.nombre == "Squirtel":
+                        if i.nombre == "Spyduck":
                             i.atrapado = True
                             lista_pokemones.append(i)
-                            print("\n¡Has elegido a Squirtel!\n")
+                            print("\n¡Has elegido a Spyduck!\n")
                             return i
                 else:
                     continue

@@ -67,7 +67,7 @@ class Base(ABC):    #* Clase base de la que heredan los pokemones
     def actualizar_lvl(self):   #* Método que actualiza el nivel del pokemon
         self._level += 1
         if self._level >= 100: 
-            self._level = 1 #* Cuando llega al nivel 100 o más, regresa al nivel 1
+            self._level = 1 #* Cuando llega al nivel 100 o más, regresa al nivel 1.
             self._evol += 1 #* Aumenta la evolución
 
             #* Indica en qué nivel de evolución va

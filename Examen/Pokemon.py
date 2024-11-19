@@ -3,7 +3,7 @@
 #? Grupo: 544
 #? Profesor: Emanuel Gomez
 
-#* Creacion de la clase Pokemon y sus metodos
+#* Creacion de la clase Pokemon y sus metodos.
 '''
 ##? Librerias
 from PokemonBase import Base

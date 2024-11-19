@@ -20,7 +20,7 @@ class Entrenamiento(ABC):   #* Clase base de la que heredan los pokemones
     def subirDefensa(self):  
         pass
 
-    @abstractmethod #* Método abstracto que sube la vida del pokemon
+    @abstractmethod #* Método abstracto que sube la vida del pokemon.
     def subirVida(self):
         pass
 
