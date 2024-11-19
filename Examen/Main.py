@@ -402,3 +402,18 @@ while True:
 
 
 print("\n||--------------------------------------------------------------------------||\n")
+
+
+#TODO: Faltantes / Observaciones
+
+#? NO debe dejar que salgan numros negativos en batalla
+
+#? Menu debe aparecer despues de cada accion
+
+#? A crear pokemon enemigo la creacion debe ser por menu
+
+#? Implementar la evolucion de pokeomones
+
+#? en batalla cuando usas la defensa, el ataque debe quitar puntos de la defensa y si se acaba la defensa, le quita la restante del ataque a la vida
+
+#? pokemon debe hablar cuando se muestran detalles
