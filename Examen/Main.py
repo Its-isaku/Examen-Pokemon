@@ -417,3 +417,6 @@ print("\n||---------------------------------------------------------------------
 #? en batalla cuando usas la defensa, el ataque debe quitar puntos de la defensa y si se acaba la defensa, le quita la restante del ataque a la vida
 
 #? pokemon debe hablar cuando se muestran detalles
+
+#? crear un registro de batallas ganadas y perdidas, de quien ataco, quien defendio, si se capturo, etc
+    #* estra, que cuadno se guarde  el registro que guarde los datos por num(batalla 1...) y que guarde el dia y la hora.
