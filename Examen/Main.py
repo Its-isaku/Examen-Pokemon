@@ -161,6 +161,7 @@ def Menu_Entrenar_Pokemon_Manual():
             print("|| 1 -> Entrenar Vida                         ||")
             print("|| 2 -> Entrenar Ataque                       ||")
             print("|| 3 -> Entrenar Defensa                      ||")
+            print("|| 3 -> Subir Nivel                           ||")
             print("|| 9 -> Salir                                 ||")
             print("||--------------------------------------------||\n")
 
@@ -176,6 +177,9 @@ def Menu_Entrenar_Pokemon_Manual():
                     elif opc == 3:
                         pokemon_en_entrenamiento.subirDefensa()
                         print(f"La defensa de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                    elif opc == 4:
+                        pokemon_en_entrenamiento.subirNivel()
+                        print(f"El nivel de {pokemon_en_entrenamiento.nombre} ha aumentado.")
                     elif opc == 9:
                         print("Saliendo del entrenamiento.")
                         break
@@ -203,7 +207,7 @@ def Menu_Actualizar_Pokemon():  # Muestra el menú para actualizar los detalles 
         print("Entrada inválida. Por favor, ingresa un número válido.")
 
 def Crear_Pokemon_Enemigo(): #? Crea un Pokemon enemigo aleatorio
-    tipo = input("Que tipo de Pokemon deseas crear? (Agua, Fuego, Electro, Hierba): ")
+    tipo = input("Que tipo de Pokemon deseas crear? (1. Agua, 2. Fuego, 3. Electro, 4. Hierba): ")
     nombre = input("Nombre del Pokemon: ")
     descripcion = input("Descripcion del Pokemon: ")
     vida = int(input("Vida del Pokemon(entre 100 - 500): "))
@@ -211,13 +215,13 @@ def Crear_Pokemon_Enemigo(): #? Crea un Pokemon enemigo aleatorio
     defensa = int(input("Defensa del Pokemon(entre 10 - 100): "))
     ataque_especial = input("Ataque Especial del Pokemon: ")
     
-    if tipo == "Agua":
+    if tipo == 1:
         lista_pokemones_enemigos.append(Agua(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_agua=ataque_especial)) #* Creacion de un objeto de tipo Agua
-    elif tipo == "Fuego":
+    elif tipo == 2:
         lista_pokemones_enemigos.append(Fuego(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_fuego=ataque_especial)) #* Creacion de un objeto de tipo Fuego
-    elif tipo == "Electro":
+    elif tipo == 3:
         lista_pokemones_enemigos.append(Electro(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_electro=ataque_especial)) #* Creacion de un objeto de tipo Electro
-    elif tipo == "Hierba":
+    elif tipo == 4:
         lista_pokemones_enemigos.append(Hierba(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_hierba=ataque_especial)) #* Creacion de un objeto de tipo Hierba
 
 def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jugador):  #? Captura un Pokemon enemigo
@@ -251,7 +255,7 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
     print("\n||------------------Tus Pokemones------------------||\n")
     Pokemones_Capturados() #* Muestra la lista de Pokemones capturados
     
-    try:    #* Muetsra un mensaje de error si la seleccion no es valida
+    try:    #* Muestra un mensaje de error si la seleccion no es valida
         eleccion = int(input("\nSelecciona tu Pokémon para la batalla: ")) - 1
         pokemon_jugador_combate = lista_pokemones[eleccion]  #* Selecciona el Pokémon del jugador
     except (ValueError, IndexError):
@@ -269,7 +273,7 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
     defensa_activa_jugador = False
     defensa_activa_enemigo = False
     
-    #? boolean para ver si ej jugador gano la batalla
+    #? boolean para ver si el jugador gano la batalla
     gano = False
     
     #? se inicializa el ciclo de la batalla
@@ -284,14 +288,14 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
             if opc == 1:
                 print("||------------------Ataque------------------||\n")
                 if defensa_activa_enemigo:  #* si el enemigo activo su defensa, solo se le resta un 75% del ataque
-                    pokemon_enemigo_combate.vida -= pokemon_jugador_combate.ataque * 0.75
-                    print(f"El Pokemon enemigo ha recibido {pokemon_jugador_combate.ataque * 0.75} de daño")
-                    print(f"Vida del Pokemon enemigo: {pokemon_enemigo_combate.vida}\n")
+                    damage = pokemon_jugador_combate.ataque * 0.75
+                    vida_pokemon_enemigo = max(0, vida_pokemon_enemigo - damage)
+                    print(f"El pokemon enemigo ha recibido {damage:2f} de daño")
                     turno = 2
                 else:
-                    pokemon_enemigo_combate.vida -= pokemon_jugador_combate.ataque
-                    print(f"El Pokemon enemigo ha recibido {pokemon_jugador_combate.ataque} de daño")
-                    print(f"Vida del Pokemon enemigo: {pokemon_enemigo_combate.vida}\n")
+                    damage = pokemon_jugador_combate.ataque
+                    vida_pokemon_enemigo = max(0, vida_pokemon_enemigo - damage)
+                    print(f"El pokemon enemigo ha recibido {damage:2f} de daño\n Vida del pokemon enemigo: {vida_pokemon_enemigo}")
                     turno = 2
             elif opc == 2:
                 print("||------------------Defensa------------------||\n")
@@ -307,14 +311,14 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
                 print("||------------------Ataque------------------||\n")
                 print("El pokemon enemigo ataca!")
                 if defensa_activa_jugador:
-                    pokemon_jugador_combate.vida -= pokemon_enemigo_combate.ataque * 0.75
-                    print(f"Tu Pokemon ha recibido {pokemon_enemigo_combate.ataque * 0.75} de daño")
-                    print(f"Vida de tu Pokemon: {pokemon_jugador_combate.vida}\n")
+                    damage = pokemon_enemigo_combate.ataque * 0.75
+                    vida_pokemon_jugador = max(0, vida_pokemon_jugador - damage)
+                    print(f"Tu Pokemon ha recibido {damage:2f} de daño")
                     turno = 1
                 else:
-                    pokemon_jugador_combate.vida -= pokemon_enemigo_combate.ataque
-                    print(f"Tu Pokemon ha recibido {pokemon_enemigo_combate.ataque} de daño")
-                    print(f"Vida de tu Pokemon: {pokemon_jugador_combate.vida}\n")
+                    damage = pokemon_enemigo_combate.ataque
+                    vida_pokemon_jugador = max(0, vida_pokemon_jugador - damage)
+                    print(f"Tu Pokemon ha recibido {damage:2f} de daño\n Vida de tu pokemon: {vida_pokemon_jugador}")
                     turno = 1
             elif opc == 2:
                 print("||------------------Defensa------------------||\n")
@@ -364,7 +368,7 @@ while True:
 
         if opc == 9:  #* Salir
             # Mandar mensaje resumiendo cuántos Pokémon capturó, cuántas derrotas tuvo y cuántas victorias
-            print("\nSaliendo...\nGracias por usar el programa!")
+            print("\nSaliendo...\nGracias por jugar pokedex!")
             break  #* Termina el programa al elegir la opción de salida en el menú principal
 
         elif opc == 1:  #* Método para crear un nuevo Pokémon enemigo

@@ -23,3 +23,7 @@ class PokemonConEntrenamiento(Pokemon, Entrenamiento):  #* Clase de pokémon con
     def subirVida(self):    #* Método que sube la vida del pokemon
         self._vida += 10  
         print(f"Vida incrementada en 10. Nueva vida: {self._vida}")
+
+def subirNivel(self): #* Método que sube el nivel del pokemon
+        self._level += 10
+        print(f"Nivel incrementado en 10. Nuevo nivel: {self._level}")

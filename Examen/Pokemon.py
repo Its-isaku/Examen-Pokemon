@@ -48,11 +48,14 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
         print(f"¡{self.nombre}, {self.nombre}, {self.nombre}!")
 
     #? Método de actualización completa
-    def actualizar(self, boost_ataque=10, boost_defensa=10, boost_vida=10): #* Método que actualiza todos los atributos del pokemon
+    def actualizar(self, boost_ataque=10, boost_defensa=10, boost_vida=10, boost_lvl = 10): #* Método que actualiza todos los atributos del pokemon
         self._ataque += boost_ataque
         self._defensa += boost_defensa
         self._vida += boost_vida
-        print(f"Atributos actualizados: \\nAtaque: {self._ataque} \\nDefensa: {self._defensa} \\nVida: {self._vida}")
+        self._level += boost_lvl
+        print(f"Atributos actualizados: \\nAtaque: {self._ataque} \\nDefensa: {self._defensa} \\nVida: {self._vida} \\nNivel: {self._level}")
+        if self._level >= 100: # si el niivel alcanza 100, actualizar evol
+            self.actualizar_lvl() # llamar metodo de clase base para manejar evol
     
     #? Método para entrenar
     def entrenar(self): #* Método que aumenta los atributos del pokemon
@@ -66,7 +69,7 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
             self._level = 0
             self._evol += 1
 
-    #? Métodos de Entrenamiento
+    #? Métodos de Entrenamiento con un boost +10
     def subirAtaque(self):
         self._ataque += 10
         print(f"Ataque incrementado en 5. Nuevo ataque: {self._ataque}")
@@ -78,3 +81,7 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
     def subirVida(self):
         self._vida += 10
         print(f"Vida incrementada en 10. Nueva vida: {self._vida}")
+        
+    def subirNivel(self):
+        self._level += 10
+        print(f"Nivel incrementado en 10. Nuevo nivel: {self._level}")
