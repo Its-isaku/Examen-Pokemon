@@ -1,10 +1,3 @@
-'''
-#! Sofia Almaraz
-#? Grupo: 544
-#? Profesor: Emanuel Gomez
-
-#* Creacion de la clase abstracta PokemonBase
-'''
 #? Librerias
 from abc import ABC, abstractmethod
 
@@ -43,6 +36,14 @@ class Base(ABC):    #* Clase base de la que heredan los pokemones
         return self._vida
 
     @property
+    def level(self):
+        return self._level
+    
+    @property
+    def evol(self):
+        return self._evol
+
+    @property
     def atrapado(self):
         return self._atrapado
     
@@ -65,18 +66,22 @@ class Base(ABC):    #* Clase base de la que heredan los pokemones
     
     #? Método para actualizar nivel
     def actualizar_lvl(self):   #* Método que actualiza el nivel del pokemon
-        self._level += 1
         if self._level >= 100: 
             self._level = 1 #* Cuando llega al nivel 100 o más, regresa al nivel 1.
             self._evol += 1 #* Aumenta la evolución
+            
+            print(f"Evolución: {self._evol}")  # Mostrar el estado de la evolución
 
             #* Indica en qué nivel de evolución va
             if self._evol == 1:
-                print("Pokemon bebé")
+                print("Pokemon bebé: Forma básica")
+                self._nombre = "Pichu"
             elif self._evol == 2:
-                print("¡Tu Pokémon ha evolucionado!")
+                print("¡Tu Pokémon ha evolucionado! Forma intermedia")
+                self._nombre = "Pikachu"
             elif self._evol >= 3:
-                print("¡Tu Pokémon ha evolucionado a Godmode!")
+                print("¡Tu Pokémon ha evolucionado a Godmode! Forma final")
+                self._nombre = "Raichu"
                 
 #? Métodos abstractos de Entrenamiento
     def subirAtaque(self):
@@ -90,3 +95,9 @@ class Base(ABC):    #* Clase base de la que heredan los pokemones
     def subirVida(self):
         self._vida += 10
         print(f"Vida incrementada en 10. Nueva vida: {self._vida}")
+        
+    def subirNivel(self):
+        self._level += 10
+        print(f"Nivel incrementado en 10. Nuevo nivel: {self._level}")
+        if self._level >= 100:
+            self.actualizar_lvl()  #* Llama al método de la clase base para manejar la evolución

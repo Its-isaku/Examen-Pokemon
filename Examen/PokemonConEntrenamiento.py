@@ -1,11 +1,3 @@
-'''
-#! Isai Almeraz
-#? Grupo: 544
-#? Profesor: Emanuel Gomez
-
-#* Creacion de la clase PoquemonConEntrenamiento
-'''
-
 #? Librerias
 from Pokemon import Pokemon
 from Entrenamiento import Entrenamiento
@@ -23,3 +15,9 @@ class PokemonConEntrenamiento(Pokemon, Entrenamiento):  #* Clase de pokémon con
     def subirVida(self):    #* Método que sube la vida del pokemon
         self._vida += 10  
         print(f"Vida incrementada en 10. Nueva vida: {self._vida}")
+
+def subirNivel(self): #* Método que sube el nivel del pokemon
+        self._level += 10
+        print(f"Nivel incrementado en 10. Nuevo nivel: {self._level}")
+        if self._level >= 100:
+            self.actualizar_lvl()  #* Llama al método de la clase base para manejar la evolución
