@@ -1,10 +1,3 @@
-'''
-#! Isai Almeraz
-#? Grupo: 544
-#? Profesor: Emanuel Gomez
-
-#* Interaccion con el usuario(Main)
-'''
 #? Librerias
 import random as rd
 from Skills import Agua, Fuego, Electro, Hierba #* Importar las clases de los pokemones
@@ -161,7 +154,7 @@ def Menu_Entrenar_Pokemon_Manual():
             print("|| 1 -> Entrenar Vida                         ||")
             print("|| 2 -> Entrenar Ataque                       ||")
             print("|| 3 -> Entrenar Defensa                      ||")
-            print("|| 3 -> Subir Nivel                           ||")
+            print("|| 4 -> Subir Nivel                           ||")
             print("|| 9 -> Salir                                 ||")
             print("||--------------------------------------------||\n")
 
@@ -207,13 +200,13 @@ def Menu_Actualizar_Pokemon():  # Muestra el menú para actualizar los detalles 
         print("Entrada inválida. Por favor, ingresa un número válido.")
 
 def Crear_Pokemon_Enemigo(): #? Crea un Pokemon enemigo aleatorio
-    tipo = input("Que tipo de Pokemon deseas crear? (1. Agua, 2. Fuego, 3. Electro, 4. Hierba): ")
+    tipo = int(input("Que tipo de Pokemon deseas crear? (1. Agua, 2. Fuego, 3. Electro, 4. Hierba): "))
     nombre = input("Nombre del Pokemon: ")
-    descripcion = input("Descripcion del Pokemon: ")
-    vida = int(input("Vida del Pokemon(entre 100 - 500): "))
-    ataque = int(input("Ataque del Pokemon(entre 10 - 100): "))
-    defensa = int(input("Defensa del Pokemon(entre 10 - 100): "))
-    ataque_especial = input("Ataque Especial del Pokemon: ")
+    descripcion = "Un Pokemon salvaje que te ha retado a una batalla."
+    vida = rd.randint(100, 500)
+    ataque = rd.randint(10, 100)
+    defensa = rd.randint(10, 100)
+    ataque_especial = "Ataque especial desconocido"
     
     if tipo == 1:
         lista_pokemones_enemigos.append(Agua(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_agua=ataque_especial)) #* Creacion de un objeto de tipo Agua
@@ -223,7 +216,8 @@ def Crear_Pokemon_Enemigo(): #? Crea un Pokemon enemigo aleatorio
         lista_pokemones_enemigos.append(Electro(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_electro=ataque_especial)) #* Creacion de un objeto de tipo Electro
     elif tipo == 4:
         lista_pokemones_enemigos.append(Hierba(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_hierba=ataque_especial)) #* Creacion de un objeto de tipo Hierba
-
+    else:
+        print("Tipo de pokemon no válido. Por favor, inténtalo de nuevo.")
 def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jugador):  #? Captura un Pokemon enemigo
     
     #? Verifica si el Pokémon enemigo puede ser capturado

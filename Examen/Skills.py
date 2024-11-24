@@ -1,10 +1,3 @@
-'''
-#! Sofia Almaraz
-#? Grupo: 544
-#? Profesor: Emanuel Gomez
-
-#* Creacion de la clase Agua
-'''
 #? Librerias
 from Pokemon import Pokemon   #* Importar la clase Base de PokemonBase
 

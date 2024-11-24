@@ -1,10 +1,3 @@
-'''
-#! Sofia Almaraz
-#? Grupo: 544
-#? Profesor: Emanuel Gomez
-
-#* Creacion de la clase abstracta PokemonBase
-'''
 #? Librerias
 from abc import ABC, abstractmethod
 
@@ -73,7 +66,6 @@ class Base(ABC):    #* Clase base de la que heredan los pokemones
     
     #? Método para actualizar nivel
     def actualizar_lvl(self):   #* Método que actualiza el nivel del pokemon
-        self._level += 1
         if self._level >= 100: 
             self._level = 1 #* Cuando llega al nivel 100 o más, regresa al nivel 1.
             self._evol += 1 #* Aumenta la evolución
@@ -107,3 +99,5 @@ class Base(ABC):    #* Clase base de la que heredan los pokemones
     def subirNivel(self):
         self._level += 10
         print(f"Nivel incrementado en 10. Nuevo nivel: {self._level}")
+        if self._level >= 100:
+            self.actualizar_lvl()  #* Llama al método de la clase base para manejar la evolución

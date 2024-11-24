@@ -1,11 +1,3 @@
-'''
-#! Isai Almeraz
-#? Grupo: 544
-#? Profesor: Emanuel Gomez
-
-#* Creacion de la clase abstracta Entrenamiento
-'''
-
 #? Librerias
 from abc import ABC, abstractmethod
 
@@ -22,5 +14,9 @@ class Entrenamiento(ABC):   #* Clase base de la que heredan los pokemones
 
     @abstractmethod #* Método abstracto que sube la vida del pokemon.
     def subirVida(self):
+        pass
+    
+    @abstractmethod #* Método abstracto que sube el nivel del pokemon.
+    def subirNivel(self):
         pass
 

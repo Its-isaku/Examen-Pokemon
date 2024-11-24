@@ -1,10 +1,3 @@
-'''
-#! Ezequel Villa
-#? Grupo: 544
-#? Profesor: Emanuel Gomez
-
-#* Creacion de la clase Pokemon y sus metodos.
-'''
 ##? Librerias
 from PokemonBase import Base
 
@@ -54,8 +47,7 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
         self._vida += boost_vida
         self._level += boost_lvl
         print(f"Atributos actualizados: \\nAtaque: {self._ataque} \\nDefensa: {self._defensa} \\nVida: {self._vida} \\nNivel: {self._level}")
-        if self._level >= 100: # si el niivel alcanza 100, actualizar evol
-            self.actualizar_lvl() # llamar metodo de clase base para manejar evol
+        self.actualizar_lvl() # llamar metodo de clase base para manejar evol
     
     #? Método para entrenar
     def entrenar(self): #* Método que aumenta los atributos del pokemon
@@ -64,10 +56,7 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
         self._vida += 10
         self._level += 5
         print(f"{self.nombre} ha entrenado! \nNivel actual: {self._level}\\n")
-        if self._level >= 100:
-            print(f"¡{self.nombre} ha evolucionado!")
-            self._level = 0
-            self._evol += 1
+        self.actualizar_lvl()
 
     #? Métodos de Entrenamiento con un boost +10
     def subirAtaque(self):
@@ -82,6 +71,9 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
         self._vida += 10
         print(f"Vida incrementada en 10. Nueva vida: {self._vida}")
         
+    # HEREEEEE    
     def subirNivel(self):
-        self._level += 10
-        print(f"Nivel incrementado en 10. Nuevo nivel: {self._level}")
+        self._level += 9
+        print(f"Nivel incrementado en 9. Nuevo nivel: {self._level}")
+        if self._level >= 100:
+            self.actualizar_lvl()
