@@ -8,7 +8,7 @@ class Agua(Pokemon):   #* Clase de pokémon de tipo agua
         self.ataque_agua = ataque_agua #* nombre del ataque especial de tipo agua
     
     def hablar(self):   #* Método que imprime un meensaje del pokemon
-        print(f"El Pokémon {self.nombre} dice: ¡Gluglugluglu!")
+        print(f"{self.nombre}, {self.nombre}, {self.nombre}!")
     
     def actualizar(self):   #* Método que actualiza los valores de defensa y vida
         self.defensa += 15
@@ -22,7 +22,7 @@ class Fuego(Pokemon):  #* Clase de pokémon de tipo fuego
         self.ataque_fuego = ataque_fuego #* nombre del ataque especial de tipo fuego
     
     def hablar(self):   #* Método que imprime un meensaje del pokemon
-        print(f"El Pokémon {self.nombre} dice: ¡pssssst!")
+        print(f"{self.nombre}, {self.nombre}, {self.nombre}!")
     
     def actualizar(self):   #* Método que actualiza los valores de defensa y vida
         self.defensa += 13
@@ -36,7 +36,7 @@ class Hierba(Pokemon):  #* Clase de pokémon de tipo hierba
         self.ataque_hierba = ataque_hierba #* nombre del ataque especial de tipo hierba
     
     def hablar(self):   #* Método que imprime un meensaje del pokemon
-        print(f"El Pokémon {self.nombre} dice: ¡aghhhhh!")
+        print(f"{self.nombre}, {self.nombre}, {self.nombre}!")
     
     def actualizar(self):   #* Método que actualiza los valores de defensa y vida
         self.defensa += 9
@@ -50,7 +50,7 @@ class Electro(Pokemon): #* Clase de pokémon de tipo electrico
         self.ataque_electro = ataque_electro #* nombre del ataque especial de tipo electro
     
     def hablar(self): #* Método que imprime un meensaje del pokemon
-        print(f"El Pokémon {self.nombre} dice: ¡brrrrrr!")
+        print(f"{self.nombre}, {self.nombre}, {self.nombre}!")
     
     def actualizar(self):   #* Método que actualiza los valores de defensa y viday
         self.defensa += 11

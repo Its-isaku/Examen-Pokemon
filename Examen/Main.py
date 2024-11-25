@@ -11,21 +11,22 @@ lista_pokemones = [] #* Lista para almacenar los Pokemones capturados
 
 #! Creacion de Objetos
 #? Creacion de Pokemones Principales
-lista_pokemones_iniciales.append(Agua(nombre="Spyduck", desc="Dios mismo", vida=100, ataque=999, defensa=999, ataque_agua="waterGun")) #* Creacion de un objeto de tipo Agua
-lista_pokemones_iniciales.append(Fuego(nombre="Charmander", desc="Pokémon de tipo Fuego ágil y lleno de determinación.", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas")) #* Creacion de un objeto de tipo Fuego
-lista_pokemones_iniciales.append(Electro(nombre="Shinx", desc=" Pokémon de tipo Electro pequeño pero lleno de energía eléctrica.", vida=100, ataque=10, defensa=10, ataque_electro="Rayo")) #* Creacion de un objeto de tipo Electro
-lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur", desc=" Pokémon de tipo Hierba con un gran equilibrio entre fuerza y resistencia.", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa")) #* Creacion de un objeto de tipo Hierba
+lista_pokemones_iniciales.append(Agua(nombre="Psyduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Dios mismo", vida=100, ataque=999, defensa=999, ataque_agua="waterGun", level="20")) #* Creacion de un objeto de tipo Agua
+lista_pokemones_iniciales.append(Fuego(nombre="Charmander",nombreEv2="Charmeleon",nombreEv3="Charizard", desc="Pokémon de tipo Fuego ágil y lleno de determinación.", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas", level="32")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_iniciales.append(Electro(nombre="Shinx",nombreEv2="Luxio",nombreEv3="Luxray", desc=" Pokémon de tipo Electro pequeño pero lleno de energía eléctrica.", vida=100, ataque=10, defensa=10, ataque_electro="Rayo", level="15")) #* Creacion de un objeto de tipo Electro
+lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur",nombreEv2="Ivysaur",nombreEv3="Venusaur", desc=" Pokémon de tipo Hierba con un gran equilibrio entre fuerza y resistencia.", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa", level="15")) #* Creacion de un objeto de tipo Hierba
 
 #? Creacion de Pokemones Enemigos  
-lista_pokemones_enemigos.append(Fuego(nombre="Vulpix", desc="Pokémon de tipo Fuego con un porte elegante y gran agilidad.", vida=250, ataque=40, defensa=30, ataque_fuego="Lanzallamas")) #* Creacion de un objeto de tipo Fuego
-lista_pokemones_enemigos.append(Agua(nombre="Golduck", desc="Pokémon de tipo Agua resistente y muy versátil en combate.", vida=350, ataque=30, defensa=30, ataque_agua="Hidrobomba")) #* Creacion de un objeto de tipo Agua
-lista_pokemones_enemigos.append(Electro(nombre="Electrabuzz", desc="Pokémon de tipo Electro con una fuerza impresionante y energía constante.", vida=450, ataque=50, defensa=60, ataque_electro="Rayo")) #* Creacion de un objeto de tipo Electro
-lista_pokemones_enemigos.append(Hierba(nombre="Gloom", desc=" Pokémon de tipo Hierba con un estilo peculiar y muy persistente", vida=150, ataque=20, defensa=25, ataque_hierba="Latigo Cepa")) #* Creacion de un objeto de tipo Hierba
+lista_pokemones_enemigos.append(Fuego(nombre="Vulpix",nombreEv2="Ninetales",nombreEv3="Ninetales", desc="Pokémon de tipo Fuego con un porte elegante y gran agilidad.", vida=250, ataque=40, defensa=30, ataque_fuego="Lanzallamas", level="46")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_enemigos.append(Agua(nombre="Golduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Pokémon de tipo Agua resistente y muy versátil en combate.", vida=350, ataque=30, defensa=30, ataque_agua="Hidrobomba", level="85")) #* Creacion de un objeto de tipo Agua
+lista_pokemones_enemigos.append(Electro(nombre="Electrabuzz",nombreEv2="Electrabuzz",nombreEv3="Electivire", desc="Pokémon de tipo Electro con una fuerza impresionante y energía constante.", vida=450, ataque=50, defensa=60, ataque_electro="Rayo", level="99")) #* Creacion de un objeto de tipo Electro
+lista_pokemones_enemigos.append(Hierba(nombre="Gloom",nombreEv2="Gloom",nombreEv3="Bellossom", desc=" Pokémon de tipo Hierba con un estilo peculiar y muy persistente", vida=150, ataque=20, defensa=25, ataque_hierba="Latigo Cepa", level="34")) #* Creacion de un objeto de tipo Hierba
 
-#? Funciones
+#? Funciones, level="N/A"
 
 #? Metodo para mostrar los pokemones capturados
 def Pokemones_Capturados():  #? Muestra la lista de Pokemones capturados
+    
     if not lista_pokemones:  #* Verifica si no hay Pokémon capturados
         print("No has capturado ningún Pokémon aún.")
         return
@@ -35,16 +36,17 @@ def Pokemones_Capturados():  #? Muestra la lista de Pokemones capturados
         pokemon.detalles_pokemon()  #* Llama al método detalles_pokemon
         
 def menu_principal():  #? Muestra el menu principal del juego
-    print("\n||--------Opciones para Pokemon---------||")
-    print("|| 1 -> Crear Pokemon enemigos          ||")
-    print("|| 2 -> Simular Batalla                 ||")
-    print("|| 3 -> Mostrar Pokemon Capturados      ||")
-    print("|| 4 -> Actualizar Detalles del Pokemon ||")
-    print("|| 5 -> Entrenar Pokemon                ||")
-    print("|| 9 -> Salir                           ||")
-    print("||--------------------------------------||\n")
-
+    
     while True:
+        print("\n||--------Opciones para Pokemon---------||")
+        print("|| 1 -> Crear Pokemon enemigos          ||")
+        print("|| 2 -> Simular Batalla                 ||")
+        print("|| 3 -> Mostrar Pokemon Capturados      ||")
+        print("|| 4 -> Actualizar Detalles del Pokemon ||")
+        print("|| 5 -> Entrenar Pokemon                ||")
+        print("|| 9 -> Salir                           ||")
+        print("||--------------------------------------||\n")
+
         try:
             opcion = int(input("\nIngrese opcion: "))
             if opcion in [1, 2, 3, 4, 5, 9]:
@@ -56,34 +58,33 @@ def menu_principal():  #? Muestra el menu principal del juego
 
 def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
     
-    print("\n||------------------Menu------------------||")
-    print("||        Aun no tienes un Pokemon        ||")
-    print("||    Elige a tu pokemon para iniciar!    ||")
-    print("||****************************************||")
-    print("|| 1 -> Spyduck(Agua)                     ||")
-    print("|| 2 -> Charmander(Fuego)                 ||")
-    print("|| 3 -> Shinx(Electrico)                  ||")
-    print("|| 4 -> Bulbasaur(Hierba)                 ||")
-    print("||----------------------------------------||\n")
-
     while True:
+        print("\n||------------------Menu------------------||")
+        print("||        Aun no tienes un Pokemon        ||")
+        print("||    Elige a tu pokemon para iniciar!    ||")
+        print("||****************************************||")
+        print("|| 1 -> Spyduck(Agua)                     ||")
+        print("|| 2 -> Charmander(Fuego)                 ||")
+        print("|| 3 -> Shinx(Electrico)                  ||")
+        print("|| 4 -> Bulbasaur(Hierba)                 ||")
+        print("||----------------------------------------||\n")
+
         try:
             opc = int((input("Elige tu Pokémon inicial:")))
             print("\n||----------------------------------------||\n")
 
             if opc == 1:
                 for i in lista_pokemones_iniciales:
-                    if i.nombre == "Spyduck":
+                    if i.nombre == "Psyduck":
                         i.detalles_pokemon()
                         break
                 eleccion = input("\n¿Estas seguro de tu eleccion? (si/no): ").lower()
                 if eleccion == "si":
                     for i in lista_pokemones_iniciales:
-                        if i.nombre == "Spyduck":
+                        if i.nombre == "Psyduck":
                             i.atrapado = True
                             lista_pokemones.append(i)
-                            print("\n¡Has elegido a Spyduck!\n")
-                            return i
+                            print("\n¡Has elegido a Psyduck!\n")
                 else:
                     continue
 
@@ -99,7 +100,6 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Charmander!\n")
-                            return i
                 else:
                     continue
 
@@ -115,7 +115,6 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Shinx!\n")
-                            return i
                 else:
                     continue
 
@@ -131,7 +130,6 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Bulbasaur!\n")
-                            return i
                 else:
                     continue
 
@@ -143,22 +141,23 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
             print("\nEntrada inválida. Por favor, ingresa un número.\n")
 
 def Menu_Entrenar_Pokemon_Manual():
-    Pokemones_Capturados()  # Muestra la lista de Pokemones capturados
+    Pokemones_Capturados()  #* Muestra la lista de Pokemones capturados
 
     try:
         pokemon_idx = int(input("¿Qué Pokémon deseas entrenar? (Ingresa el número): ")) - 1
         if 0 <= pokemon_idx < len(lista_pokemones):
             pokemon_en_entrenamiento = lista_pokemones[pokemon_idx]
 
-            print("\n||--------Opciones para Entrenamiento---------||")
-            print("|| 1 -> Entrenar Vida                         ||")
-            print("|| 2 -> Entrenar Ataque                       ||")
-            print("|| 3 -> Entrenar Defensa                      ||")
-            print("|| 4 -> Subir Nivel                           ||")
-            print("|| 9 -> Salir                                 ||")
-            print("||--------------------------------------------||\n")
-
             while True:
+                
+                print("\n||--------Opciones para Entrenamiento---------||")
+                print("|| 1 -> Entrenar Vida                         ||")
+                print("|| 2 -> Entrenar Ataque                       ||")
+                print("|| 3 -> Entrenar Defensa                      ||")
+                print("|| 4 -> Subir Nivel                           ||")
+                print("|| 9 -> Salir                                 ||")
+                print("||--------------------------------------------||\n")
+
                 try:
                     opc = int(input("\nIngrese opción: "))
                     if opc == 1:
@@ -172,7 +171,8 @@ def Menu_Entrenar_Pokemon_Manual():
                         print(f"La defensa de {pokemon_en_entrenamiento.nombre} ha aumentado.")
                     elif opc == 4:
                         pokemon_en_entrenamiento.subirNivel()
-                        print(f"El nivel de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                        if pokemon_en_entrenamiento.evol != 3:
+                            print(f"El nivel de {pokemon_en_entrenamiento.nombre} ha aumentado.")
                     elif opc == 9:
                         print("Saliendo del entrenamiento.")
                         break
@@ -199,25 +199,36 @@ def Menu_Actualizar_Pokemon():  # Muestra el menú para actualizar los detalles 
     except ValueError:
         print("Entrada inválida. Por favor, ingresa un número válido.")
 
-def Crear_Pokemon_Enemigo(): #? Crea un Pokemon enemigo aleatorio
-    tipo = int(input("Que tipo de Pokemon deseas crear? (1. Agua, 2. Fuego, 3. Electro, 4. Hierba): "))
-    nombre = input("Nombre del Pokemon: ")
+def Crear_Pokemon_Enemigo(): #? Crea un Pokemon enemigo aleatorio 
+    
+    print("\n||--------------tipo de pokemon---------------||")
+    print("|| 1 -> Agua                                  ||")
+    print("|| 2 -> Fuego                                 ||")
+    print("|| 3 -> Electro                               ||")
+    print("|| 4 -> Hierba                                ||")
+    print("||--------------------------------------------||\n")
+    
+    tipo = int(input("Que tipo de Pokemon deseas crear? "))
+    nombre = input("Nombre del Pokemon Evolucion 1: ")
+    nombreEv2 = input("Nombre del Pokemon Evolucion 2: ")
+    nombreEv3 = input("Nombre del Pokemon Evolucion 3: ")
     descripcion = "Un Pokemon salvaje que te ha retado a una batalla."
     vida = rd.randint(100, 500)
     ataque = rd.randint(10, 100)
     defensa = rd.randint(10, 100)
-    ataque_especial = "Ataque especial desconocido"
+    ataque_especial = input("ataque especial: ")
     
     if tipo == 1:
-        lista_pokemones_enemigos.append(Agua(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_agua=ataque_especial)) #* Creacion de un objeto de tipo Agua
+        lista_pokemones_enemigos.append(Agua(nombre=nombre, nombreEv2 = nombreEv2, nombreEv3 = nombreEv3, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_agua=ataque_especial)) #* Creacion de un objeto de tipo Agua
     elif tipo == 2:
-        lista_pokemones_enemigos.append(Fuego(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_fuego=ataque_especial)) #* Creacion de un objeto de tipo Fuego
+        lista_pokemones_enemigos.append(Fuego(nombre=nombre, nombreEv2 = nombreEv2, nombreEv3 = nombreEv3, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_fuego=ataque_especial)) #* Creacion de un objeto de tipo Fuego
     elif tipo == 3:
-        lista_pokemones_enemigos.append(Electro(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_electro=ataque_especial)) #* Creacion de un objeto de tipo Electro
+        lista_pokemones_enemigos.append(Electro(nombre=nombre, nombreEv2 = nombreEv2, nombreEv3 = nombreEv3, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_electro=ataque_especial)) #* Creacion de un objeto de tipo Electro
     elif tipo == 4:
-        lista_pokemones_enemigos.append(Hierba(nombre=nombre, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_hierba=ataque_especial)) #* Creacion de un objeto de tipo Hierba
+        lista_pokemones_enemigos.append(Hierba(nombre=nombre, nombreEv2 = nombreEv2, nombreEv3 = nombreEv3, desc = descripcion, vida=vida, ataque=ataque, defensa=defensa, ataque_hierba=ataque_especial)) #* Creacion de un objeto de tipo Hierba
     else:
         print("Tipo de pokemon no válido. Por favor, inténtalo de nuevo.")
+        
 def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jugador):  #? Captura un Pokemon enemigo
     
     #? Verifica si el Pokémon enemigo puede ser capturado
@@ -417,4 +428,4 @@ print("\n||---------------------------------------------------------------------
 #? pokemon debe hablar cuando se muestran detalles
 
 #? crear un registro de batallas ganadas y perdidas, de quien ataco, quien defendio, si se capturo, etc
-    #* estra, que cuadno se guarde  el registro que guarde los datos por num(batalla 1...) y que guarde el dia y la hora.
+    #* extra, que cuadno se guarde  el registro que guarde los datos por num(batalla 1...) y que guarde el dia y la hora.
