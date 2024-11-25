@@ -58,7 +58,9 @@ def menu_principal():  #? Muestra el menu principal del juego
 
 def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
     
-    while True:
+    pokemon_elegido = False
+    
+    while not pokemon_elegido:
         print("\n||------------------Menu------------------||")
         print("||        Aun no tienes un Pokemon        ||")
         print("||    Elige a tu pokemon para iniciar!    ||")
@@ -85,6 +87,7 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Psyduck!\n")
+                            pokemon_elegido = True
                 else:
                     continue
 
@@ -100,6 +103,7 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Charmander!\n")
+                            pokemon_elegido = True
                 else:
                     continue
 
@@ -115,6 +119,7 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Shinx!\n")
+                            pokemon_elegido = True
                 else:
                     continue
 
@@ -130,6 +135,7 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Bulbasaur!\n")
+                            pokemon_elegido = True
                 else:
                     continue
 
@@ -244,145 +250,134 @@ def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jug
     else:
         print("\nNo puedes capturar al Pokémon. Su nivel de vida inicial era mayor o igual al tuyo.\n")
 
-def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
+def Batalla_Pokemon():
     
-    #? Mensaje para jugador
-    print("\n||------------------Batalla------------------||")
-    print("\nHaz entrado a un combate!\n")
+    #* Define colores
+    RESET = "\033[0m"   #* Reinicia color
+    ROJO = "\033[91m"   #* Rojo brillante (enemigo)
+    VERDE = "\033[92m"  #* Verde brillante (jugador)
+    AZUL = "\033[94m"   #* Azul brillante (mensajes neutros)
     
-    #? Muestra el pokemon enemigo con el que se va a pelear
-    print("\n||------------------Pokemon Enemigo------------------||\n")
-    pokemon_enemigo_combate = rd.choice(lista_pokemones_enemigos)  #* Selecciona un Pokémon enemigo aleatorio
-    pokemon_enemigo_combate.detalles_pokemon()  #* Llama al método para mostrar detalles del Pokémon enemigo
-    print("\n||---------------------------------------------------||\n")
-    
-    #? Muestra los Pokemones capturados para elegir uno para la batalla
-    print("\n||------------------Tus Pokemones------------------||\n")
-    Pokemones_Capturados() #* Muestra la lista de Pokemones capturados
-    
-    try:    #* Muestra un mensaje de error si la seleccion no es valida
-        eleccion = int(input("\nSelecciona tu Pokémon para la batalla: ")) - 1
-        pokemon_jugador_combate = lista_pokemones[eleccion]  #* Selecciona el Pokémon del jugador
-    except (ValueError, IndexError):
-        print("Selección inválida. Por favor, inténtalo de nuevo.")
-        return
-    
-    #? Capturo la vida inicial de los Pokemones
-    vida_pokemon_jugador = pokemon_jugador_combate.vida #* Captura la vida inicial del Pokemon jugador para comparar al final antes de capturar
-    vida_pokemon_enemigo = pokemon_enemigo_combate.vida #* Captura la vida inicial del Pokemon enemigo para comparar al final antes de capturar
-    
-    #? Ciclo para la batalla
-    turno = 1 #* Variable para llevar el control de los turnos | 1 = Jugador | 2 = Enemigo
-    
-    #? boolean para saber si alun pokemn activo su defensa  
-    defensa_activa_jugador = False
-    defensa_activa_enemigo = False
-    #? valores actuales de la defensa de los jugadores
-    defensa_enemigo = pokemon_enemigo_combate.defensa
-    defensa_jugador = pokemon_jugador_combate.defensa
+    print(f"{AZUL}||-------------------------------------------------||")
+    print("             ¡ENTRASTE EN UNA BATALLA!")
+    print(f"||-------------------------------------------------||{RESET}")
 
-    #? boolean para ver si el jugador gano la batalla
-    gano = False
+    print(f"{ROJO}||-------------------------------------------------||")
+    print("               POKÉMON ENEMIGO APARECE")
+    print(f"||-------------------------------------------------||{RESET}")
     
-    #? se inicializa el ciclo de la batalla
-    while vida_pokemon_jugador > 0 and vida_pokemon_enemigo > 0: #* Ciclo para la batalla
+    pokemon_enemigo_combate = rd.choice(lista_pokemones_enemigos)
+    pokemon_enemigo_combate.detalles_pokemon()
+
+    print(f"{VERDE}||-------------------------------------------------||")
+    print("                    TUS POKÉMONS")
+    print(f"||-------------------------------------------------||{RESET}")
+    Pokemones_Capturados()
+
+    try:
+        eleccion = int(input(f"\n{VERDE}Selecciona tu Pokémon para la batalla: {RESET}")) - 1
+        pokemon_jugador_combate = lista_pokemones[eleccion]
+    except (ValueError, IndexError):
+        print(f"{ROJO}⚠️ Selección inválida. Por favor, inténtalo de nuevo.{RESET}")
+        return
+
+    vida_pokemon_jugador = pokemon_jugador_combate.vida
+    vida_pokemon_enemigo = pokemon_enemigo_combate.vida
+
+    turno = 1
+    defensa_activa_jugador = defensa_activa_enemigo = False
+    defensa_jugador = pokemon_jugador_combate.defensa
+    defensa_enemigo = pokemon_enemigo_combate.defensa
+    gano = False
+
+    while vida_pokemon_jugador > 0 and vida_pokemon_enemigo > 0:
         if turno == 1:
-            print("\n||------------------Turno Jugador------------------||")
-            print("|| 1 -> Atacar                                     ||")
-            print("|| 2 -> Defensa                                    ||")
-            print("||-------------------------------------------------||\n")
-            opc = int(input("Que deseas hacer? "))
-            
+            print(f"\n{VERDE}||------------------Turno Jugador------------------||{RESET}")
+            print(f"{VERDE}|| 1 -> Atacar                                     ||{RESET}")
+            print(f"{VERDE}|| 2 -> Defensa                                    ||{RESET}")
+            print(f"{VERDE}||-------------------------------------------------||{RESET}\n")
+            opc = int(input(f"{VERDE}¿Qué deseas hacer? {RESET}"))
+
             if opc == 1:
-                print("||------------------Ataque------------------||\n")
-                if defensa_activa_enemigo:  #* si el enemigo activo su defensa, solo se le resta un 75% del ataque
-                    damage = pokemon_jugador_combate.ataque * 0.75
-                else:
-                    damage = pokemon_jugador_combate.ataque
-                #Reducir primero la defensa del enemigo
+                print(f"{VERDE}||-------------------------------------------------||")
+                print("                       ¡ATAQUE!")
+                print(f"||-------------------------------------------------||{RESET}")
+                damage = pokemon_jugador_combate.ataque * (0.75 if defensa_activa_enemigo else 1)
+                
                 if defensa_enemigo > 0:
                     if damage <= defensa_enemigo:
                         defensa_enemigo -= damage
-                        print(f"La defensa del enemigo absorbio {damage:.2f} de daño")
-                        damage = 0 # Todo el daño fue absorbido
+                        print(f"\n{AZUL}✨ La defensa del enemigo absorbió {damage:.2f} de daño{RESET}")
+                        damage = 0
                     else:
+                        print(f"\n{AZUL}✨ La defensa del enemigo se destruyó ({defensa_enemigo:.2f} absorbido){RESET}")
                         damage -= defensa_enemigo
-                        print(f"La defensa del enemigo absorbio {defensa_enemigo:.2f} de daño y fue destruida")
                         defensa_enemigo = 0
-
-                #? Reducir la vida del enemigo con el daño restante
                 if damage > 0:
-                    vida_pokemon_enemigo = max(0,vida_pokemon_enemigo - damage)
-                    print(f"El pokemon enemigo ha recibido {damage:.2f} de daño en su vida")
-
-                #? Valores actualizados
-                print(f"Vida del pokemon enemigo: {vida_pokemon_enemigo}")
-                print(f"Defensa restante del pokemon enemigo: {defensa_enemigo}")
+                    vida_pokemon_enemigo = max(0, vida_pokemon_enemigo - damage)
+                    print(f"{AZUL}⚔️  Daño a la vida del enemigo: {damage:.2f}{RESET}")
+                print(f"{AZUL}❤️  Vida del enemigo: {vida_pokemon_enemigo}  |  🛡️  Defensa: {defensa_enemigo}{RESET}")
                 turno = 2
-                
+
             elif opc == 2:
-                print("||------------------Defensa------------------||\n")
+                print(f"{VERDE}||-------------------------------------------------||")
+                print("                  ¡DEFENSA ACTIVADA!")
+                print(f"||-------------------------------------------------||{RESET}")
                 defensa_activa_jugador = True
-                print("Defensa activada!")
                 turno = 2
-                
-        elif turno == 2:
-            print("||------------------Turno Enemigo------------------||\n")
-            opc = rd.randint(1, 2)
-            
-            if opc == 1:
-                print("||------------------Ataque------------------||\n")
-                print("El pokemon enemigo ataca!")
-                if defensa_activa_jugador:
-                    damage = pokemon_enemigo_combate.ataque * 0.75
-                else:
-                    damage = pokemon_enemigo_combate.ataque
 
-                # Reducir primero la defensa del jugador
+        elif turno == 2:
+            print(f"\n{ROJO}||------------------Turno Enemigo------------------||{RESET}")
+            opc = rd.randint(1, 2)
+
+            if opc == 1:
+                print(f"{ROJO}||-------------------------------------------------||")
+                print("                   ¡ATAQUE ENEMIGO!")
+                print(f"||-------------------------------------------------||{RESET}")
+                damage = pokemon_enemigo_combate.ataque * (0.75 if defensa_activa_jugador else 1)
                 if defensa_jugador > 0:
                     if damage <= defensa_jugador:
-                        defensa_jugador -=
-                        print(f"Tu defensa absorbio {damage_ .2f} de daño")
-                        damage = 0 # Todo el daño fue absorbido
-                    else: 
+                        defensa_jugador -= damage
+                        print(f"\n{AZUL}✨ Tu defensa absorbió {damage:.2f} de daño{RESET}")
+                        damage = 0
+                    else:
+                        print(f"\n{AZUL}✨ Tu defensa se destruyó ({defensa_jugador:.2f} absorbido){RESET}")
                         damage -= defensa_jugador
-                        print(f"Tu defensa absorbio {defensa_jugador:.2f} de daño y fue destruida")
-                        defensa_jugador = 0 # La defensa se agoto
-
-                # Reducir la vida del jugador con el daño restante
+                        defensa_jugador = 0
                 if damage > 0:
-                    vida_pokemon_jugador = max(0,vida_pokemon_jugador - damage)
-                    print(f"Tu pokemon ha recibido {damage:.2f} de daño en su vida")
-
-                # Valores actualizados
-                print(f"Vida de tu pokemon: {vida_pokemon_jugador}")
-                print(f"Defensa restante de tu pokemon: {defensa_jugador}")
+                    vida_pokemon_jugador = max(0, vida_pokemon_jugador - damage)
+                    print(f"{AZUL}⚔️  Daño a tu vida: {damage:.2f}{RESET}")
+                print(f"{AZUL}❤️  Tu Vida: {vida_pokemon_jugador}  |  🛡️  Tu Defensa: {defensa_jugador}{RESET}")
                 turno = 1
 
             elif opc == 2:
-                print("||------------------Defensa------------------||\n")
+                print(f"{ROJO}||-------------------------------------------------||")
+                print("               ¡ENEMIGO ACTIVÓ DEFENSA!")
+                print(f"||-------------------------------------------------||{RESET}")
                 defensa_activa_enemigo = True
-                print("Defensa de pokemon enemigo activada!")
                 turno = 1
-    
-        if pokemon_jugador_combate.vida <= 0:
-            print("\nHas perdido la batalla!\n")
-            break
-        elif pokemon_enemigo_combate.vida <= 0:
-            print("\n¡Has ganado la batalla!\n")
-            gano = True
-            break
-        
+
+    if vida_pokemon_jugador <= 0:
+        print(f"\n{ROJO}❌ Has perdido la batalla...{RESET}\n")
+    elif vida_pokemon_enemigo <= 0:
+        print(f"\n{VERDE}✅ ¡Ganaste la batalla!{RESET}\n")
+        gano = True
+
     if gano:
-        print("||------------------Capturar Pokémon------------------||\n")
-        eleccion = input("¿Deseas capturar al Pokémon enemigo? (si/no): ").lower()
+        print(f"{AZUL}||-------------------------------------------------||")
+        print("                OPORTUNIDAD DE CAPTURA")
+        print(f"||-------------------------------------------------||{RESET}")
+        eleccion = input(f"{AZUL}¿Deseas capturar al Pokémon enemigo? (si/no): {RESET}").lower()
         if eleccion == "si":
-            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)  #* Llama a la función de captura
+            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)
         else:
-            print("\nNo has capturado al Pokémon enemigo.\n")
-    
-    print("Fin del combate!\n")
-    print("||---------------------------------------------------||\n")
+            print(f"\n{AZUL}No has capturado al Pokémon enemigo.{RESET}\n")
+
+    print(f"{AZUL}||-------------------------------------------------||")
+    print("                   FIN DEL COMBATE")
+    print(f"||-------------------------------------------------||{RESET}")
+
+
 
 def Saludo_Inicial():#? Saluda al usuario por primera vez en el juego, mostrando el nombre del juego y una breve descripcion
     
