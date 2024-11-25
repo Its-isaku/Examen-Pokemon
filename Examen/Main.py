@@ -13,7 +13,7 @@ lista_pokemones = [] #* Lista para almacenar los Pokemones capturados
 
 #! Creacion de Objetos
 #? Creacion de Pokemones Principales
-lista_pokemones_iniciales.append(Agua(nombre="Psyduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Dios mismo", vida=100, ataque=999, defensa=999, ataque_agua="waterGun", level="20")) #* Creacion de un objeto de tipo Agua
+lista_pokemones_iniciales.append(Agua(nombre="Psyduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Dios mismo", vida=1000, ataque=999, defensa=999, ataque_agua="waterGun", level="20")) #* Creacion de un objeto de tipo Agua
 lista_pokemones_iniciales.append(Fuego(nombre="Charmander",nombreEv2="Charmeleon",nombreEv3="Charizard", desc="Pokemon de tipo Fuego agil y lleno de determinacion.", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas", level="32")) #* Creacion de un objeto de tipo Fuego
 lista_pokemones_iniciales.append(Electro(nombre="Shinx",nombreEv2="Luxio",nombreEv3="Luxray", desc=" Pokemon de tipo Electro pequeno pero lleno de energia electrica.", vida=100, ataque=10, defensa=10, ataque_electro="Rayo", level="15")) #* Creacion de un objeto de tipo Electro
 lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur",nombreEv2="Ivysaur",nombreEv3="Venusaur", desc=" Pokemon de tipo Hierba con un gran equilibrio entre fuerza y resistencia.", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa", level="15")) #* Creacion de un objeto de tipo Hierba
@@ -249,6 +249,8 @@ def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jug
     #? Verifica si el Pokémon enemigo puede ser capturado
     if pokemon_para_capturar.vida > 0:  #* El Pokémon aún tiene vida
         print("\nNo puedes capturar a este Pokémon. Aún tiene vida!\n")
+        print(f"Vida actual del enemigo: {pokemon_para_capturar.vida}")
+
         return
 
     if vida_inicio_enemigo < vida_inicio_jugador:  #* Vida inicial del enemigo es menor
@@ -264,20 +266,20 @@ num_batalla = 1
 def Batalla_Pokemon():
     global num_batalla
 
-    #* Crear una carpeta para los registros
+    # Crear una carpeta para los registros
     carpeta = "Registros_Batallas"
     if not os.path.exists(carpeta):  # Si la carpeta no existe, se crea
         os.makedirs(carpeta)
 
-    #* Crear un archivo para guardar la batalla dentro de la carpeta
+    # Crear un archivo para guardar la batalla dentro de la carpeta
     nombre_archivo = os.path.join(carpeta, f"Batalla_{num_batalla}.txt")
     with open(nombre_archivo, "w") as archivo:
         archivo.write(f"||-------------Battalla # {num_batalla}--------------||\n")
         archivo.write(f"\nFecha y hora de inicio: {dt.now()}\n")
         archivo.flush()
         os.fsync(archivo.fileno())  # Asegura que los datos se escriban inmediatamente
-    
-    #* Define colores
+
+    # Define colores
     RESET = "\033[0m"
     ROJO = "\033[91m"
     VERDE = "\033[92m"
@@ -365,6 +367,7 @@ def Batalla_Pokemon():
                             defensa_enemigo = 0
                     if damage > 0:
                         vida_pokemon_enemigo = max(0, vida_pokemon_enemigo - damage)
+                        pokemon_enemigo_combate.vida = vida_pokemon_enemigo  # **Aquí se actualiza la vida del enemigo**
                         print(f"{AZUL}⚔️  Daño a la vida del enemigo: {damage:.2f}{RESET}")
                     print(f"{AZUL}❤️  Vida del enemigo: {vida_pokemon_enemigo}  |  🛡️  Defensa: {defensa_enemigo}{RESET}")
                     turno = 2
@@ -427,12 +430,16 @@ def Batalla_Pokemon():
         ganador = "Jugador" if vida_pokemon_enemigo <= 0 else "Enemigo"
         captura = False
 
+        # Resumen final después de la batalla
         if ganador == "Jugador":
             print(f"\n{VERDE}✅ ¡Ganaste la batalla!{RESET}\n")
             eleccion = input(f"{AZUL}¿Deseas capturar al Pokémon enemigo? (si/no): {RESET}").lower()
             if eleccion == "si":
+                estado_anterior_lista = len(lista_pokemones)  # Tamaño de la lista antes de intentar capturar
                 Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)
-                captura = True
+                captura = len(lista_pokemones) > estado_anterior_lista  # Verifica si cambió la lista
+            else:
+                captura = False
         else:
             print(f"\n{ROJO}❌ ¡Perdiste la batalla!{RESET}\n")
 
@@ -455,6 +462,7 @@ def Batalla_Pokemon():
 
     except Exception as e:
         print(f"{ROJO}⚠️ Error durante la batalla: {e}{RESET}")
+
 
 
 def Saludo_Inicial():#? Saluda al usuario por primera vez en el juego, mostrando el nombre del juego y una breve descripcion
