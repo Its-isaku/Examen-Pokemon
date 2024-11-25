@@ -277,7 +277,10 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
     #? boolean para saber si alun pokemn activo su defensa  
     defensa_activa_jugador = False
     defensa_activa_enemigo = False
-    
+    #? valores actuales de la defensa de los jugadores
+    defensa_enemigo = pokemon_enemigo_combate.defensa
+    defensa_jugador = pokemon_jugador_combate.defensa
+
     #? boolean para ver si el jugador gano la batalla
     gano = False
     
@@ -294,14 +297,29 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
                 print("||------------------Ataque------------------||\n")
                 if defensa_activa_enemigo:  #* si el enemigo activo su defensa, solo se le resta un 75% del ataque
                     damage = pokemon_jugador_combate.ataque * 0.75
-                    vida_pokemon_enemigo = max(0, vida_pokemon_enemigo - damage)
-                    print(f"El pokemon enemigo ha recibido {damage:2f} de daño")
-                    turno = 2
                 else:
                     damage = pokemon_jugador_combate.ataque
-                    vida_pokemon_enemigo = max(0, vida_pokemon_enemigo - damage)
-                    print(f"El pokemon enemigo ha recibido {damage:2f} de daño\n Vida del pokemon enemigo: {vida_pokemon_enemigo}")
-                    turno = 2
+                #Reducir primero la defensa del enemigo
+                if defensa_enemigo > 0:
+                    if damage <= defensa_enemigo:
+                        defensa_enemigo -= damage
+                        print(f"La defensa del enemigo absorbio {damage:.2f} de daño")
+                        damage = 0 # Todo el daño fue absorbido
+                    else:
+                        damage -= defensa_enemigo
+                        print(f"La defensa del enemigo absorbio {defensa_enemigo:.2f} de daño y fue destruida")
+                        defensa_enemigo = 0
+
+                #? Reducir la vida del enemigo con el daño restante
+                if damage > 0:
+                    vida_pokemon_enemigo = max(0,vida_pokemon_enemigo - damage)
+                    print(f"El pokemon enemigo ha recibido {damage:.2f} de daño en su vida")
+
+                #? Valores actualizados
+                print(f"Vida del pokemon enemigo: {vida_pokemon_enemigo}")
+                print(f"Defensa restante del pokemon enemigo: {defensa_enemigo}")
+                turno = 2
+                
             elif opc == 2:
                 print("||------------------Defensa------------------||\n")
                 defensa_activa_jugador = True
@@ -317,14 +335,28 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
                 print("El pokemon enemigo ataca!")
                 if defensa_activa_jugador:
                     damage = pokemon_enemigo_combate.ataque * 0.75
-                    vida_pokemon_jugador = max(0, vida_pokemon_jugador - damage)
-                    print(f"Tu Pokemon ha recibido {damage:2f} de daño")
-                    turno = 1
                 else:
                     damage = pokemon_enemigo_combate.ataque
-                    vida_pokemon_jugador = max(0, vida_pokemon_jugador - damage)
-                    print(f"Tu Pokemon ha recibido {damage:2f} de daño\n Vida de tu pokemon: {vida_pokemon_jugador}")
+
+                # Reducir primero la defensa del jugador
+                if defensa_jugador > 0:
+                    if damage <= defensa_jugador:
+                        defensa_jugador -=
+                        print(f"Tu defensa absorbio {damage_ .2f} de daño")
+                        damage = 0 # Todo el daño fue absorbido
+                    else: 
+                        damage -= defensa_jugador
+                        print(f"Tu defensa absorbio {defensa_jugador:.2f} de daño y fue destruida")
+                        defensa_jugador = 0 # La defensa se agoto
+
+                # Reducir la vida del jugador con el daño restante
+                if damage > 0:
+                    vida_pokemon_jugador = max(0,vida_pokemon_jugador - damage)
+                    print(f"Tu pokemon ha recibido {damage:.2f} de daño en su vida")
+                    print(f"Vida de tu pokemon: {vida_pokemon_jugador}")
+                    print(f"Defensa restante de tu pokemon: {defensa_jugador}")
                     turno = 1
+
             elif opc == 2:
                 print("||------------------Defensa------------------||\n")
                 defensa_activa_enemigo = True
