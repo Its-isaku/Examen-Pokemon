@@ -1,0 +1,60 @@
+||-------------Battalla # 2--------------||
+
+Fecha y hora de inicio: 2024-11-25 00:55:04.000185
+
+||------Detalles de Pokemon enemigo------||
+Nombre: Gloom
+Descripcion:  Pokemon de tipo Hierba con un estilo peculiar y muy persistente
+Ataque: 20
+Defensa: 25
+Vida: 150
+Nivel: 34
+Evolucion: 1
+Atrapado: No
+
+||------Detalles de Pokemon jugador------||
+Nombre: Charmander
+Descripcion: Pokemon de tipo Fuego agil y lleno de determinacion.
+Ataque: 10
+Defensa: 10
+Vida: 100
+Nivel: 32
+Evolucion: 1
+Atrapado: Si
+
+||-----------Resumen de batalla----------||
+Jugador ataco. Danio: 0.00. Vida enemigo restante: 150.00.
+Enemigo ataco. Danio: 10.00. Vida jugador restante: 90.00.
+Jugador ataco. Danio: 0.00. Vida enemigo restante: 150.00.
+Enemigo activo defensa.
+Jugador ataco. Danio: 2.50. Vida enemigo restante: 147.50.
+Enemigo ataco. Danio: 20.00. Vida jugador restante: 70.00.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 140.00.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 132.50.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 125.00.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 117.50.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 110.00.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 102.50.
+Enemigo ataco. Danio: 20.00. Vida jugador restante: 50.00.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 95.00.
+Enemigo ataco. Danio: 20.00. Vida jugador restante: 30.00.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 87.50.
+Enemigo ataco. Danio: 20.00. Vida jugador restante: 10.00.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 80.00.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 72.50.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 65.00.
+Enemigo ataco. Danio: 20.00. Vida jugador restante: 0.00.
+
+Ganador: Enemigo
+Ataques del jugador: 14
+Defensas del jugador: 0
+Ataques del enemigo: 6
+Defensas del enemigo: 8
+Pokemon enemigo capturado: No

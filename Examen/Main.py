@@ -1,5 +1,7 @@
 #? Librerias
+from  datetime import datetime as dt
 import random as rd
+import os
 from Skills import Agua, Fuego, Electro, Hierba #* Importar las clases de los pokemones
 
 #? Variales
@@ -12,15 +14,15 @@ lista_pokemones = [] #* Lista para almacenar los Pokemones capturados
 #! Creacion de Objetos
 #? Creacion de Pokemones Principales
 lista_pokemones_iniciales.append(Agua(nombre="Psyduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Dios mismo", vida=100, ataque=999, defensa=999, ataque_agua="waterGun", level="20")) #* Creacion de un objeto de tipo Agua
-lista_pokemones_iniciales.append(Fuego(nombre="Charmander",nombreEv2="Charmeleon",nombreEv3="Charizard", desc="Pokémon de tipo Fuego ágil y lleno de determinación.", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas", level="32")) #* Creacion de un objeto de tipo Fuego
-lista_pokemones_iniciales.append(Electro(nombre="Shinx",nombreEv2="Luxio",nombreEv3="Luxray", desc=" Pokémon de tipo Electro pequeño pero lleno de energía eléctrica.", vida=100, ataque=10, defensa=10, ataque_electro="Rayo", level="15")) #* Creacion de un objeto de tipo Electro
-lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur",nombreEv2="Ivysaur",nombreEv3="Venusaur", desc=" Pokémon de tipo Hierba con un gran equilibrio entre fuerza y resistencia.", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa", level="15")) #* Creacion de un objeto de tipo Hierba
+lista_pokemones_iniciales.append(Fuego(nombre="Charmander",nombreEv2="Charmeleon",nombreEv3="Charizard", desc="Pokemon de tipo Fuego agil y lleno de determinacion.", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas", level="32")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_iniciales.append(Electro(nombre="Shinx",nombreEv2="Luxio",nombreEv3="Luxray", desc=" Pokemon de tipo Electro pequeno pero lleno de energia electrica.", vida=100, ataque=10, defensa=10, ataque_electro="Rayo", level="15")) #* Creacion de un objeto de tipo Electro
+lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur",nombreEv2="Ivysaur",nombreEv3="Venusaur", desc=" Pokemon de tipo Hierba con un gran equilibrio entre fuerza y resistencia.", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa", level="15")) #* Creacion de un objeto de tipo Hierba
 
 #? Creacion de Pokemones Enemigos  
-lista_pokemones_enemigos.append(Fuego(nombre="Vulpix",nombreEv2="Ninetales",nombreEv3="Ninetales", desc="Pokémon de tipo Fuego con un porte elegante y gran agilidad.", vida=250, ataque=40, defensa=30, ataque_fuego="Lanzallamas", level="46")) #* Creacion de un objeto de tipo Fuego
-lista_pokemones_enemigos.append(Agua(nombre="Golduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Pokémon de tipo Agua resistente y muy versátil en combate.", vida=350, ataque=30, defensa=30, ataque_agua="Hidrobomba", level="85")) #* Creacion de un objeto de tipo Agua
-lista_pokemones_enemigos.append(Electro(nombre="Electrabuzz",nombreEv2="Electrabuzz",nombreEv3="Electivire", desc="Pokémon de tipo Electro con una fuerza impresionante y energía constante.", vida=450, ataque=50, defensa=60, ataque_electro="Rayo", level="99")) #* Creacion de un objeto de tipo Electro
-lista_pokemones_enemigos.append(Hierba(nombre="Gloom",nombreEv2="Gloom",nombreEv3="Bellossom", desc=" Pokémon de tipo Hierba con un estilo peculiar y muy persistente", vida=150, ataque=20, defensa=25, ataque_hierba="Latigo Cepa", level="34")) #* Creacion de un objeto de tipo Hierba
+lista_pokemones_enemigos.append(Fuego(nombre="Vulpix",nombreEv2="Ninetales",nombreEv3="Ninetales", desc="Pokemon de tipo Fuego con un porte elegante y gran agilidad.", vida=250, ataque=40, defensa=30, ataque_fuego="Lanzallamas", level="46")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_enemigos.append(Agua(nombre="Golduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Pokemon de tipo Agua resistente y muy versatil en combate.", vida=350, ataque=30, defensa=30, ataque_agua="Hidrobomba", level="85")) #* Creacion de un objeto de tipo Agua
+lista_pokemones_enemigos.append(Electro(nombre="Electrabuzz",nombreEv2="Electrabuzz",nombreEv3="Electivire", desc="Pokemon de tipo Electro con una fuerza impresionante y energia constante.", vida=450, ataque=50, defensa=60, ataque_electro="Rayo", level="99")) #* Creacion de un objeto de tipo Electro
+lista_pokemones_enemigos.append(Hierba(nombre="Gloom",nombreEv2="Gloom",nombreEv3="Bellossom", desc=" Pokemon de tipo Hierba con un estilo peculiar y muy persistente", vida=150, ataque=20, defensa=25, ataque_hierba="Latigo Cepa", level="34")) #* Creacion de un objeto de tipo Hierba
 
 #? Funciones, level="N/A"
 
@@ -250,14 +252,30 @@ def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jug
     else:
         print("\nNo puedes capturar al Pokémon. Su nivel de vida inicial era mayor o igual al tuyo.\n")
 
+num_batalla = 1
+
 def Batalla_Pokemon():
+    global num_batalla
+
+    #* Crear una carpeta para los registros
+    carpeta = "Registros_Batallas"
+    if not os.path.exists(carpeta):  # Si la carpeta no existe, se crea
+        os.makedirs(carpeta)
+
+    #* Crear un archivo para guardar la batalla dentro de la carpeta
+    nombre_archivo = os.path.join(carpeta, f"Batalla_{num_batalla}.txt")
+    with open(nombre_archivo, "w") as archivo:
+        archivo.write(f"||-------------Battalla # {num_batalla}--------------||\n")
+        archivo.write(f"\nFecha y hora de inicio: {dt.now()}\n")
+        archivo.flush()
+        os.fsync(archivo.fileno())  # Asegura que los datos se escriban inmediatamente
     
     #* Define colores
-    RESET = "\033[0m"   #* Reinicia color
-    ROJO = "\033[91m"   #* Rojo brillante (enemigo)
-    VERDE = "\033[92m"  #* Verde brillante (jugador)
-    AZUL = "\033[94m"   #* Azul brillante (mensajes neutros)
-    
+    RESET = "\033[0m"
+    ROJO = "\033[91m"
+    VERDE = "\033[92m"
+    AZUL = "\033[94m"
+
     print(f"{AZUL}||-------------------------------------------------||")
     print("             ¡ENTRASTE EN UNA BATALLA!")
     print(f"||-------------------------------------------------||{RESET}")
@@ -265,9 +283,17 @@ def Batalla_Pokemon():
     print(f"{ROJO}||-------------------------------------------------||")
     print("               POKÉMON ENEMIGO APARECE")
     print(f"||-------------------------------------------------||{RESET}")
-    
+
+    # Selección del Pokémon enemigo
     pokemon_enemigo_combate = rd.choice(lista_pokemones_enemigos)
     pokemon_enemigo_combate.detalles_pokemon()
+
+    with open(nombre_archivo, "a") as archivo:
+        archivo.write(f"\n||------Detalles de Pokemon enemigo------||\n")
+        detalles = pokemon_enemigo_combate.detalles_pokemon_archivo()
+        archivo.write(detalles + "\n")
+        archivo.flush()
+        os.fsync(archivo.fileno())
 
     print(f"{VERDE}||-------------------------------------------------||")
     print("                    TUS POKÉMONS")
@@ -281,6 +307,14 @@ def Batalla_Pokemon():
         print(f"{ROJO}⚠️ Selección inválida. Por favor, inténtalo de nuevo.{RESET}")
         return
 
+    with open(nombre_archivo, "a") as archivo:
+        archivo.write(f"||------Detalles de Pokemon jugador------||\n")
+        detalles = pokemon_jugador_combate.detalles_pokemon_archivo()
+        archivo.write(detalles + "\n")
+        archivo.flush()
+        os.fsync(archivo.fileno())
+
+    # Variables de la batalla
     vida_pokemon_jugador = pokemon_jugador_combate.vida
     vida_pokemon_enemigo = pokemon_enemigo_combate.vida
 
@@ -290,93 +324,130 @@ def Batalla_Pokemon():
     defensa_enemigo = pokemon_enemigo_combate.defensa
     gano = False
 
-    while vida_pokemon_jugador > 0 and vida_pokemon_enemigo > 0:
-        if turno == 1:
-            print(f"\n{VERDE}||------------------Turno Jugador------------------||{RESET}")
-            print(f"{VERDE}|| 1 -> Atacar                                     ||{RESET}")
-            print(f"{VERDE}|| 2 -> Defensa                                    ||{RESET}")
-            print(f"{VERDE}||-------------------------------------------------||{RESET}\n")
-            opc = int(input(f"{VERDE}¿Qué deseas hacer? {RESET}"))
+    # Contadores de movimientos
+    ataques_jugador = defensas_jugador = 0
+    ataques_enemigo = defensas_enemigo = 0
+    captura = False
 
-            if opc == 1:
-                print(f"{VERDE}||-------------------------------------------------||")
-                print("                       ¡ATAQUE!")
-                print(f"||-------------------------------------------------||{RESET}")
-                damage = pokemon_jugador_combate.ataque * (0.75 if defensa_activa_enemigo else 1)
-                
-                if defensa_enemigo > 0:
-                    if damage <= defensa_enemigo:
-                        defensa_enemigo -= damage
-                        print(f"\n{AZUL}✨ La defensa del enemigo absorbió {damage:.2f} de daño{RESET}")
-                        damage = 0
-                    else:
-                        print(f"\n{AZUL}✨ La defensa del enemigo se destruyó ({defensa_enemigo:.2f} absorbido){RESET}")
-                        damage -= defensa_enemigo
-                        defensa_enemigo = 0
-                if damage > 0:
-                    vida_pokemon_enemigo = max(0, vida_pokemon_enemigo - damage)
-                    print(f"{AZUL}⚔️  Daño a la vida del enemigo: {damage:.2f}{RESET}")
-                print(f"{AZUL}❤️  Vida del enemigo: {vida_pokemon_enemigo}  |  🛡️  Defensa: {defensa_enemigo}{RESET}")
-                turno = 2
+    try:
+        with open(nombre_archivo, "a") as archivo:
+            archivo.write(f"||-----------Resumen de batalla----------||\n")
+            archivo.flush()
+            os.fsync(archivo.fileno())
 
-            elif opc == 2:
-                print(f"{VERDE}||-------------------------------------------------||")
-                print("                  ¡DEFENSA ACTIVADA!")
-                print(f"||-------------------------------------------------||{RESET}")
-                defensa_activa_jugador = True
-                turno = 2
+        # Ciclo de la batalla
+        while vida_pokemon_jugador > 0 and vida_pokemon_enemigo > 0:
+            if turno == 1:  # Turno del jugador
+                print(f"\n{VERDE}||------------------Turno Jugador------------------||{RESET}")
+                print(f"{VERDE}|| 1 -> Atacar                                     ||{RESET}")
+                print(f"{VERDE}|| 2 -> Defensa                                    ||{RESET}")
+                print(f"{VERDE}||-------------------------------------------------||{RESET}\n")
+                opc = int(input(f"{VERDE}¿Qué deseas hacer? {RESET}"))
 
-        elif turno == 2:
-            print(f"\n{ROJO}||------------------Turno Enemigo------------------||{RESET}")
-            opc = rd.randint(1, 2)
+                if opc == 1:  # Ataque del jugador
+                    ataques_jugador += 1
+                    damage = pokemon_jugador_combate.ataque * (0.75 if defensa_activa_enemigo else 1)
+                    if defensa_enemigo > 0:
+                        if damage <= defensa_enemigo:
+                            defensa_enemigo -= damage
+                            print(f"\n{AZUL}✨ La defensa del enemigo absorbió {damage:.2f} de daño{RESET}")
+                            damage = 0
+                        else:
+                            print(f"\n{AZUL}✨ La defensa del enemigo se destruyó ({defensa_enemigo:.2f} absorbido){RESET}")
+                            damage -= defensa_enemigo
+                            defensa_enemigo = 0
+                    if damage > 0:
+                        vida_pokemon_enemigo = max(0, vida_pokemon_enemigo - damage)
+                        print(f"{AZUL}⚔️  Daño a la vida del enemigo: {damage:.2f}{RESET}")
+                    print(f"{AZUL}❤️  Vida del enemigo: {vida_pokemon_enemigo}  |  🛡️  Defensa: {defensa_enemigo}{RESET}")
+                    turno = 2
+                    with open(nombre_archivo, "a") as archivo:
+                        archivo.write(f"Jugador ataco. Danio: {damage:.2f}. Vida enemigo restante: {vida_pokemon_enemigo:.2f}.\n")
+                        archivo.flush()
+                        os.fsync(archivo.fileno())
 
-            if opc == 1:
-                print(f"{ROJO}||-------------------------------------------------||")
-                print("                   ¡ATAQUE ENEMIGO!")
-                print(f"||-------------------------------------------------||{RESET}")
-                damage = pokemon_enemigo_combate.ataque * (0.75 if defensa_activa_jugador else 1)
-                if defensa_jugador > 0:
-                    if damage <= defensa_jugador:
-                        defensa_jugador -= damage
-                        print(f"\n{AZUL}✨ Tu defensa absorbió {damage:.2f} de daño{RESET}")
-                        damage = 0
-                    else:
-                        print(f"\n{AZUL}✨ Tu defensa se destruyó ({defensa_jugador:.2f} absorbido){RESET}")
-                        damage -= defensa_jugador
-                        defensa_jugador = 0
-                if damage > 0:
-                    vida_pokemon_jugador = max(0, vida_pokemon_jugador - damage)
-                    print(f"{AZUL}⚔️  Daño a tu vida: {damage:.2f}{RESET}")
-                print(f"{AZUL}❤️  Tu Vida: {vida_pokemon_jugador}  |  🛡️  Tu Defensa: {defensa_jugador}{RESET}")
-                turno = 1
+                elif opc == 2:  # Defensa del jugador
+                    defensas_jugador += 1
+                    defensa_activa_jugador = True
+                    print(f"{VERDE}||-------------------------------------------------||")
+                    print("                  ¡DEFENSA ACTIVADA!")
+                    print(f"||-------------------------------------------------||{RESET}")
+                    turno = 2
+                    with open(nombre_archivo, "a") as archivo:
+                        archivo.write("Jugador activo defensa.\n")
+                        archivo.flush()
+                        os.fsync(archivo.fileno())
 
-            elif opc == 2:
-                print(f"{ROJO}||-------------------------------------------------||")
-                print("               ¡ENEMIGO ACTIVÓ DEFENSA!")
-                print(f"||-------------------------------------------------||{RESET}")
-                defensa_activa_enemigo = True
-                turno = 1
+            elif turno == 2:  # Turno del enemigo
+                print(f"\n{ROJO}||------------------Turno Enemigo------------------||{RESET}")
+                opc = rd.randint(1, 2)
 
-    if vida_pokemon_jugador <= 0:
-        print(f"\n{ROJO}❌ Has perdido la batalla...{RESET}\n")
-    elif vida_pokemon_enemigo <= 0:
-        print(f"\n{VERDE}✅ ¡Ganaste la batalla!{RESET}\n")
-        gano = True
+                if opc == 1:  # Ataque del enemigo
+                    ataques_enemigo += 1
+                    damage = pokemon_enemigo_combate.ataque * (0.75 if defensa_activa_jugador else 1)
+                    if defensa_jugador > 0:
+                        if damage <= defensa_jugador:
+                            defensa_jugador -= damage
+                            print(f"\n{AZUL}✨ Tu defensa absorbió {damage:.2f} de daño{RESET}")
+                            damage = 0
+                        else:
+                            print(f"\n{AZUL}✨ Tu defensa se destruyó ({defensa_jugador:.2f} absorbido){RESET}")
+                            damage -= defensa_jugador
+                            defensa_jugador = 0
+                    if damage > 0:
+                        vida_pokemon_jugador = max(0, vida_pokemon_jugador - damage)
+                        print(f"{AZUL}⚔️  Daño a tu vida: {damage:.2f}{RESET}")
+                    print(f"{AZUL}❤️  Tu Vida: {vida_pokemon_jugador}  |  🛡️  Tu Defensa: {defensa_jugador}{RESET}")
+                    turno = 1
+                    with open(nombre_archivo, "a") as archivo:
+                        archivo.write(f"Enemigo ataco. Danio: {damage:.2f}. Vida jugador restante: {vida_pokemon_jugador:.2f}.\n")
+                        archivo.flush()
+                        os.fsync(archivo.fileno())
 
-    if gano:
-        print(f"{AZUL}||-------------------------------------------------||")
-        print("                OPORTUNIDAD DE CAPTURA")
-        print(f"||-------------------------------------------------||{RESET}")
-        eleccion = input(f"{AZUL}¿Deseas capturar al Pokémon enemigo? (si/no): {RESET}").lower()
-        if eleccion == "si":
-            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)
+                elif opc == 2:  # Defensa del enemigo
+                    defensas_enemigo += 1
+                    defensa_activa_enemigo = True
+                    print(f"{ROJO}||-------------------------------------------------||")
+                    print("               ¡ENEMIGO ACTIVÓ DEFENSA!")
+                    print(f"||-------------------------------------------------||{RESET}")
+                    turno = 1
+                    with open(nombre_archivo, "a") as archivo:
+                        archivo.write("Enemigo activo defensa.\n")
+                        archivo.flush()
+                        os.fsync(archivo.fileno())
+
+        # Fin de la batalla
+        ganador = "Jugador" if vida_pokemon_enemigo <= 0 else "Enemigo"
+        captura = False
+
+        if ganador == "Jugador":
+            print(f"\n{VERDE}✅ ¡Ganaste la batalla!{RESET}\n")
+            eleccion = input(f"{AZUL}¿Deseas capturar al Pokémon enemigo? (si/no): {RESET}").lower()
+            if eleccion == "si":
+                Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)
+                captura = True
         else:
-            print(f"\n{AZUL}No has capturado al Pokémon enemigo.{RESET}\n")
+            print(f"\n{ROJO}❌ ¡Perdiste la batalla!{RESET}\n")
 
-    print(f"{AZUL}||-------------------------------------------------||")
-    print("                   FIN DEL COMBATE")
-    print(f"||-------------------------------------------------||{RESET}")
+        # Resumen final
+        with open(nombre_archivo, "a") as archivo:
+            archivo.write(f"\nGanador: {ganador}\n")
+            archivo.write(f"Ataques del jugador: {ataques_jugador}\n")
+            archivo.write(f"Defensas del jugador: {defensas_jugador}\n")
+            archivo.write(f"Ataques del enemigo: {ataques_enemigo}\n")
+            archivo.write(f"Defensas del enemigo: {defensas_enemigo}\n")
+            archivo.write(f"Pokemon enemigo capturado: {'Si' if captura else 'No'}\n")
+            archivo.flush()
+            os.fsync(archivo.fileno())
 
+        num_batalla += 1
+
+        print(f"{AZUL}||-------------------------------------------------||")
+        print("                   FIN DEL COMBATE")
+        print(f"||-------------------------------------------------||{RESET}")
+
+    except Exception as e:
+        print(f"{ROJO}⚠️ Error durante la batalla: {e}{RESET}")
 
 
 def Saludo_Inicial():#? Saluda al usuario por primera vez en el juego, mostrando el nombre del juego y una breve descripcion

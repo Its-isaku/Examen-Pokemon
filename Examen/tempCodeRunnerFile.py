@@ -1,2 +1,1 @@
-
-                print("El pokemon enemigo ataca!")
+ {RESET}"))

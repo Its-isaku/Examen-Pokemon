@@ -1,0 +1,62 @@
+||-------------Battalla # 1--------------||
+
+Fecha y hora de inicio: 2024-11-25 00:54:13.989511
+
+||------Detalles de Pokemon enemigo------||
+Nombre: Golduck
+Descripcion: Pokemon de tipo Agua resistente y muy versatil en combate.
+Ataque: 30
+Defensa: 30
+Vida: 350
+Nivel: 85
+Evolucion: 1
+Atrapado: No
+
+||------Detalles de Pokemon jugador------||
+Nombre: Charmander
+Descripcion: Pokemon de tipo Fuego agil y lleno de determinacion.
+Ataque: 10
+Defensa: 10
+Vida: 100
+Nivel: 32
+Evolucion: 1
+Atrapado: Si
+
+||-----------Resumen de batalla----------||
+Jugador activo defensa.
+Enemigo activo defensa.
+Jugador activo defensa.
+Enemigo activo defensa.
+Jugador activo defensa.
+Enemigo activo defensa.
+Jugador ataco. Danio: 0.00. Vida enemigo restante: 350.00.
+Enemigo ataco. Danio: 12.50. Vida jugador restante: 87.50.
+Jugador ataco. Danio: 0.00. Vida enemigo restante: 350.00.
+Enemigo ataco. Danio: 22.50. Vida jugador restante: 65.00.
+Jugador ataco. Danio: 0.00. Vida enemigo restante: 350.00.
+Enemigo activo defensa.
+Jugador ataco. Danio: 0.00. Vida enemigo restante: 350.00.
+Enemigo activo defensa.
+Jugador activo defensa.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 342.50.
+Enemigo ataco. Danio: 22.50. Vida jugador restante: 42.50.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 335.00.
+Enemigo activo defensa.
+Jugador activo defensa.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 327.50.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 320.00.
+Enemigo ataco. Danio: 22.50. Vida jugador restante: 20.00.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 312.50.
+Enemigo activo defensa.
+Jugador ataco. Danio: 7.50. Vida enemigo restante: 305.00.
+Enemigo ataco. Danio: 22.50. Vida jugador restante: 0.00.
+
+Ganador: Enemigo
+Ataques del jugador: 10
+Defensas del jugador: 5
+Ataques del enemigo: 5
+Defensas del enemigo: 10
+Pokemon enemigo capturado: No
