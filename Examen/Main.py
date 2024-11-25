@@ -353,9 +353,11 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
                 if damage > 0:
                     vida_pokemon_jugador = max(0,vida_pokemon_jugador - damage)
                     print(f"Tu pokemon ha recibido {damage:.2f} de daño en su vida")
-                    print(f"Vida de tu pokemon: {vida_pokemon_jugador}")
-                    print(f"Defensa restante de tu pokemon: {defensa_jugador}")
-                    turno = 1
+
+                # Valores actualizados
+                print(f"Vida de tu pokemon: {vida_pokemon_jugador}")
+                print(f"Defensa restante de tu pokemon: {defensa_jugador}")
+                turno = 1
 
             elif opc == 2:
                 print("||------------------Defensa------------------||\n")
