@@ -46,12 +46,14 @@ def menu_principal():  #? Muestra el menu principal del juego
         print("|| 3 -> Mostrar Pokemon Capturados      ||")
         print("|| 4 -> Actualizar Detalles del Pokemon ||")
         print("|| 5 -> Entrenar Pokemon                ||")
+        print("|| 6 -> Prueba manejo de errores        ||")
+        print("|| 7 -> Ver batallas pasadas            ||")
         print("|| 9 -> Salir                           ||")
         print("||--------------------------------------||\n")
 
         try:
             opcion = int(input("\nIngrese opcion: "))
-            if opcion in [1, 2, 3, 4, 5, 9]:
+            if opcion in [1, 2, 3, 4, 5, 6, 7, 9]:
                 return opcion
             else:
                 print("Opción no válida. Intente de nuevo.")
@@ -171,19 +173,24 @@ def Menu_Entrenar_Pokemon_Manual():
                     if opc == 1:
                         pokemon_en_entrenamiento.subirVida()
                         print(f"La vida de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                        
                     elif opc == 2:
                         pokemon_en_entrenamiento.subirAtaque()
                         print(f"El ataque de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                        
                     elif opc == 3:
                         pokemon_en_entrenamiento.subirDefensa()
                         print(f"La defensa de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                        
                     elif opc == 4:
                         pokemon_en_entrenamiento.subirNivel()
                         if pokemon_en_entrenamiento.evol != 3:
                             print(f"El nivel de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                    
                     elif opc == 9:
                         print("Saliendo del entrenamiento.")
                         break
+                    
                     else:
                         print("Opción no válida. Intenta de nuevo.")
                 except ValueError:
@@ -457,6 +464,28 @@ def Saludo_Inicial():#? Saluda al usuario por primera vez en el juego, mostrando
     print(f"\nBienvenido al Juego {nombre}!")
     print("Este es un Juego de Pokemon, donde podras capturar, entrenar a tus propios Pokemon y tener \nbatallas con otros Pokemon salvajes!")
     print("\n||--------------------------------------------------------------------------||\n")
+    
+def Manejo_errores(): #? Metodo para  mostrar el manejo de errores
+    try:
+        print("\n||------------------------------Manejo de errores------------------------------||\n")
+        print("||                      Error de tipo de dato en la entrada de un número                      ||")
+        error = int(input("Ingresa un String: "))
+    except ValueError:
+        print("El error 'ValueError' se manejo con un try except, ya que el valor ingresado no es un número entero.")
+        
+def Leer_Batallas(carpeta):  #? Método para leer las batallas pasadas
+    print("\n||------------------------------Batallas Pasadas------------------------------||\n")
+    
+    #* Iterar sobre todos los archivos en la carpeta
+    for archivo in os.listdir(carpeta):
+        if archivo.endswith(".txt"):  #* Filtrar solo archivos .txt
+            ruta_archivo = os.path.join(carpeta, archivo)
+            with open(ruta_archivo, "r", encoding="utf-8") as f:
+                print(f"Contenido de {archivo}:\n")
+                print(f.read())  #* Mostrar el contenido del archivo
+                print("\n||----------------------------------------------------------------------------||\n")  # Separador
+    
+    
 
 #! Codigo Principal
 
@@ -501,8 +530,14 @@ while True:
                 print("\nNo tienes Pokémon capturados para entrenar.\n")
             else:
                 Menu_Entrenar_Pokemon_Manual()  #* Llama al menú para entrenar un Pokémon manualmente
+                
+        elif opc == 6:  #* Método para mostrar el manejo de errores
+            Manejo_errores()
         
-        
+        elif opc == 7:  #* Método para mostrar las batallas pasadas
+            carpeta = "C:\\Users\\RogSt\\Desktop\\Examen-POO\\Registros_Batallas" #* Ruta de la carpeta de registros
+            Leer_Batallas(carpeta)
+            
         else:
             print("\nOpción no válida!\n")
 
@@ -511,21 +546,3 @@ while True:
 
 
 print("\n||--------------------------------------------------------------------------||\n")
-
-
-#TODO: Faltantes / Observaciones
-
-#? NO debe dejar que salgan numros negativos en batalla
-
-#? Menu debe aparecer despues de cada accion
-
-#? A crear pokemon enemigo la creacion debe ser por menu
-
-#? Implementar la evolucion de pokeomones
-
-#? en batalla cuando usas la defensa, el ataque debe quitar puntos de la defensa y si se acaba la defensa, le quita la restante del ataque a la vida
-
-#? pokemon debe hablar cuando se muestran detalles
-
-#? crear un registro de batallas ganadas y perdidas, de quien ataco, quien defendio, si se capturo, etc
-    #* extra, que cuadno se guarde  el registro que guarde los datos por num(batalla 1...) y que guarde el dia y la hora.
