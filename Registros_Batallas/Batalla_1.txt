@@ -1,14 +1,14 @@
 ||-------------Battalla # 1--------------||
 
-Fecha y hora de inicio: 2024-11-25 12:10:02.846790
+Fecha y hora de inicio: 2024-11-25 17:58:34.168958
 
 ||------Detalles de Pokemon enemigo------||
-Nombre: Electrabuzz
-Descripcion: Pokemon de tipo Electro con una fuerza impresionante y energia constante.
-Ataque: 50
-Defensa: 60
-Vida: 450
-Nivel: 99
+Nombre: Golduck
+Descripcion: Pokemon de tipo Agua resistente y muy versatil en combate.
+Ataque: 30
+Defensa: 30
+Vida: 350
+Nivel: 85
 Evolucion: 1
 Atrapado: No
 
@@ -24,16 +24,18 @@ Atrapado: Si
 
 ||-----------Resumen de batalla----------||
 Jugador activo defensa.
-Enemigo ataco. Danio: 0.00. Vida jugador restante: 1000.00.
-Jugador activo defensa.
 Enemigo activo defensa.
 Jugador activo defensa.
 Enemigo ataco. Danio: 0.00. Vida jugador restante: 1000.00.
-Jugador ataco. Danio: 689.25. Vida enemigo restante: 0.00.
+Jugador activo defensa.
+Enemigo ataco. Danio: 0.00. Vida jugador restante: 1000.00.
+Jugador activo defensa.
+Enemigo activo defensa.
+Jugador ataco. Danio: 719.25. Vida enemigo restante: 0.00.
 
 Ganador: Jugador
 Ataques del jugador: 1
-Defensas del jugador: 3
+Defensas del jugador: 4
 Ataques del enemigo: 2
-Defensas del enemigo: 1
+Defensas del enemigo: 2
 Pokemon enemigo capturado: Si
