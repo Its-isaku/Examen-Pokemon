@@ -229,7 +229,7 @@ def Crear_Pokemon_Enemigo(): #? Crea un Pokemon enemigo aleatorio
     else:
         print("Tipo de pokemon no válido. Por favor, inténtalo de nuevo.")
         
-def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jugador):  #? Captura un Pokemon enemigo
+def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jugador, defensa_inicio_enemigo):  #? Captura un Pokemon enemigo
     
     #? Verifica si el Pokémon enemigo puede ser capturado
     if pokemon_para_capturar.vida > 0:  #* El Pokémon aún tiene vida
@@ -238,6 +238,8 @@ def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jug
 
     if vida_inicio_enemigo < vida_inicio_jugador:  #* Vida inicial del enemigo es menor
         pokemon_para_capturar.atrapado = True  #* Cambia el estado a capturado
+        pokemon_para_capturar.vida = vida_inicio_enemigo #* Restaura la vida inicial
+        pokemon_para_capturar.defensa = defensa_inicio_enemigo #* Restaura a defensa inicial
         lista_pokemones.append(pokemon_para_capturar)  #* Agrega a la lista del jugador
         lista_pokemones_enemigos.remove(pokemon_para_capturar)  #* Elimina el Pokémon de la lista de enemigos
         print(f"\n¡Felicidades! Has capturado a {pokemon_para_capturar.nombre}!\n")
@@ -341,7 +343,7 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
                 # Reducir primero la defensa del jugador
                 if defensa_jugador > 0:
                     if damage <= defensa_jugador:
-                        defensa_jugador -=
+                        defensa_jugador -= damage
                         print(f"Tu defensa absorbio {damage_ .2f} de daño")
                         damage = 0 # Todo el daño fue absorbido
                     else: 
@@ -377,7 +379,7 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
         print("||------------------Capturar Pokémon------------------||\n")
         eleccion = input("¿Deseas capturar al Pokémon enemigo? (si/no): ").lower()
         if eleccion == "si":
-            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)  #* Llama a la función de captura
+            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo,vida_inicio_jugador, defensa_enemigo)  #* Llama a la función de captura
         else:
             print("\nNo has capturado al Pokémon enemigo.\n")
     
