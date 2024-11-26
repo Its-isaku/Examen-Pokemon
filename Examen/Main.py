@@ -1,5 +1,7 @@
 #? Librerias
+from  datetime import datetime as dt
 import random as rd
+import os
 from Skills import Agua, Fuego, Electro, Hierba #* Importar las clases de los pokemones
 
 #? Variales
@@ -11,16 +13,16 @@ lista_pokemones = [] #* Lista para almacenar los Pokemones capturados
 
 #! Creacion de Objetos
 #? Creacion de Pokemones Principales
-lista_pokemones_iniciales.append(Agua(nombre="Psyduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Dios mismo", vida=100, ataque=999, defensa=999, ataque_agua="waterGun", level="20")) #* Creacion de un objeto de tipo Agua
-lista_pokemones_iniciales.append(Fuego(nombre="Charmander",nombreEv2="Charmeleon",nombreEv3="Charizard", desc="Pokémon de tipo Fuego ágil y lleno de determinación.", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas", level="32")) #* Creacion de un objeto de tipo Fuego
-lista_pokemones_iniciales.append(Electro(nombre="Shinx",nombreEv2="Luxio",nombreEv3="Luxray", desc=" Pokémon de tipo Electro pequeño pero lleno de energía eléctrica.", vida=100, ataque=10, defensa=10, ataque_electro="Rayo", level="15")) #* Creacion de un objeto de tipo Electro
-lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur",nombreEv2="Ivysaur",nombreEv3="Venusaur", desc=" Pokémon de tipo Hierba con un gran equilibrio entre fuerza y resistencia.", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa", level="15")) #* Creacion de un objeto de tipo Hierba
+lista_pokemones_iniciales.append(Agua(nombre="Psyduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Dios mismo", vida=1000, ataque=999, defensa=999, ataque_agua="waterGun", level="20")) #* Creacion de un objeto de tipo Agua
+lista_pokemones_iniciales.append(Fuego(nombre="Charmander",nombreEv2="Charmeleon",nombreEv3="Charizard", desc="Pokemon de tipo Fuego agil y lleno de determinacion.", vida=100, ataque=10, defensa=10, ataque_fuego="Lanzallamas", level="32")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_iniciales.append(Electro(nombre="Shinx",nombreEv2="Luxio",nombreEv3="Luxray", desc=" Pokemon de tipo Electro pequeno pero lleno de energia electrica.", vida=100, ataque=10, defensa=10, ataque_electro="Rayo", level="15")) #* Creacion de un objeto de tipo Electro
+lista_pokemones_iniciales.append(Hierba(nombre="Bulbasaur",nombreEv2="Ivysaur",nombreEv3="Venusaur", desc=" Pokemon de tipo Hierba con un gran equilibrio entre fuerza y resistencia.", vida=100, ataque=10, defensa=10, ataque_hierba="Latigo Cepa", level="15")) #* Creacion de un objeto de tipo Hierba
 
 #? Creacion de Pokemones Enemigos  
-lista_pokemones_enemigos.append(Fuego(nombre="Vulpix",nombreEv2="Ninetales",nombreEv3="Ninetales", desc="Pokémon de tipo Fuego con un porte elegante y gran agilidad.", vida=250, ataque=40, defensa=30, ataque_fuego="Lanzallamas", level="46")) #* Creacion de un objeto de tipo Fuego
-lista_pokemones_enemigos.append(Agua(nombre="Golduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Pokémon de tipo Agua resistente y muy versátil en combate.", vida=350, ataque=30, defensa=30, ataque_agua="Hidrobomba", level="85")) #* Creacion de un objeto de tipo Agua
-lista_pokemones_enemigos.append(Electro(nombre="Electrabuzz",nombreEv2="Electrabuzz",nombreEv3="Electivire", desc="Pokémon de tipo Electro con una fuerza impresionante y energía constante.", vida=450, ataque=50, defensa=60, ataque_electro="Rayo", level="99")) #* Creacion de un objeto de tipo Electro
-lista_pokemones_enemigos.append(Hierba(nombre="Gloom",nombreEv2="Gloom",nombreEv3="Bellossom", desc=" Pokémon de tipo Hierba con un estilo peculiar y muy persistente", vida=150, ataque=20, defensa=25, ataque_hierba="Latigo Cepa", level="34")) #* Creacion de un objeto de tipo Hierba
+lista_pokemones_enemigos.append(Fuego(nombre="Vulpix",nombreEv2="Ninetales",nombreEv3="Ninetales", desc="Pokemon de tipo Fuego con un porte elegante y gran agilidad.", vida=250, ataque=40, defensa=30, ataque_fuego="Lanzallamas", level="46")) #* Creacion de un objeto de tipo Fuego
+lista_pokemones_enemigos.append(Agua(nombre="Golduck",nombreEv2="Golduck",nombreEv3="Golduck", desc="Pokemon de tipo Agua resistente y muy versatil en combate.", vida=350, ataque=30, defensa=30, ataque_agua="Hidrobomba", level="85")) #* Creacion de un objeto de tipo Agua
+lista_pokemones_enemigos.append(Electro(nombre="Electrabuzz",nombreEv2="Electrabuzz",nombreEv3="Electivire", desc="Pokemon de tipo Electro con una fuerza impresionante y energia constante.", vida=450, ataque=50, defensa=60, ataque_electro="Rayo", level="99")) #* Creacion de un objeto de tipo Electro
+lista_pokemones_enemigos.append(Hierba(nombre="Gloom",nombreEv2="Gloom",nombreEv3="Bellossom", desc=" Pokemon de tipo Hierba con un estilo peculiar y muy persistente", vida=150, ataque=20, defensa=25, ataque_hierba="Latigo Cepa", level="34")) #* Creacion de un objeto de tipo Hierba
 
 #? Funciones, level="N/A"
 
@@ -44,12 +46,14 @@ def menu_principal():  #? Muestra el menu principal del juego
         print("|| 3 -> Mostrar Pokemon Capturados      ||")
         print("|| 4 -> Actualizar Detalles del Pokemon ||")
         print("|| 5 -> Entrenar Pokemon                ||")
+        print("|| 6 -> Prueba manejo de errores        ||")
+        print("|| 7 -> Ver batallas pasadas            ||")
         print("|| 9 -> Salir                           ||")
         print("||--------------------------------------||\n")
 
         try:
             opcion = int(input("\nIngrese opcion: "))
-            if opcion in [1, 2, 3, 4, 5, 9]:
+            if opcion in [1, 2, 3, 4, 5, 6, 7, 9]:
                 return opcion
             else:
                 print("Opción no válida. Intente de nuevo.")
@@ -58,7 +62,9 @@ def menu_principal():  #? Muestra el menu principal del juego
 
 def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
     
-    while True:
+    pokemon_elegido = False
+    
+    while not pokemon_elegido:
         print("\n||------------------Menu------------------||")
         print("||        Aun no tienes un Pokemon        ||")
         print("||    Elige a tu pokemon para iniciar!    ||")
@@ -85,6 +91,7 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Psyduck!\n")
+                            pokemon_elegido = True
                 else:
                     continue
 
@@ -100,6 +107,7 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Charmander!\n")
+                            pokemon_elegido = True
                 else:
                     continue
 
@@ -115,6 +123,7 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Shinx!\n")
+                            pokemon_elegido = True
                 else:
                     continue
 
@@ -130,6 +139,7 @@ def menu_elegir_pokemon():  #? Muestra el menu para elegir el pokemon inicial
                             i.atrapado = True
                             lista_pokemones.append(i)
                             print("\n¡Has elegido a Bulbasaur!\n")
+                            pokemon_elegido = True
                 else:
                     continue
 
@@ -163,19 +173,24 @@ def Menu_Entrenar_Pokemon_Manual():
                     if opc == 1:
                         pokemon_en_entrenamiento.subirVida()
                         print(f"La vida de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                        
                     elif opc == 2:
                         pokemon_en_entrenamiento.subirAtaque()
                         print(f"El ataque de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                        
                     elif opc == 3:
                         pokemon_en_entrenamiento.subirDefensa()
                         print(f"La defensa de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                        
                     elif opc == 4:
                         pokemon_en_entrenamiento.subirNivel()
                         if pokemon_en_entrenamiento.evol != 3:
                             print(f"El nivel de {pokemon_en_entrenamiento.nombre} ha aumentado.")
+                    
                     elif opc == 9:
                         print("Saliendo del entrenamiento.")
                         break
+                    
                     else:
                         print("Opción no válida. Intenta de nuevo.")
                 except ValueError:
@@ -234,6 +249,8 @@ def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jug
     #? Verifica si el Pokémon enemigo puede ser capturado
     if pokemon_para_capturar.vida > 0:  #* El Pokémon aún tiene vida
         print("\nNo puedes capturar a este Pokémon. Aún tiene vida!\n")
+        print(f"Vida actual del enemigo: {pokemon_para_capturar.vida}")
+
         return
 
     if vida_inicio_enemigo < vida_inicio_jugador:  #* Vida inicial del enemigo es menor
@@ -246,44 +263,76 @@ def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jug
     else:
         print("\nNo puedes capturar al Pokémon. Su nivel de vida inicial era mayor o igual al tuyo.\n")
 
-def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
-    
-    #? Mensaje para jugador
-    print("\n||------------------Batalla------------------||")
-    print("\nHaz entrado a un combate!\n")
-    
-    #? Muestra el pokemon enemigo con el que se va a pelear
-    print("\n||------------------Pokemon Enemigo------------------||\n")
-    pokemon_enemigo_combate = rd.choice(lista_pokemones_enemigos)  #* Selecciona un Pokémon enemigo aleatorio
-    pokemon_enemigo_combate.detalles_pokemon()  #* Llama al método para mostrar detalles del Pokémon enemigo
-    print("\n||---------------------------------------------------||\n")
-    
-    #? Muestra los Pokemones capturados para elegir uno para la batalla
-    print("\n||------------------Tus Pokemones------------------||\n")
-    Pokemones_Capturados() #* Muestra la lista de Pokemones capturados
-    
-    try:    #* Muestra un mensaje de error si la seleccion no es valida
-        eleccion = int(input("\nSelecciona tu Pokémon para la batalla: ")) - 1
-        pokemon_jugador_combate = lista_pokemones[eleccion]  #* Selecciona el Pokémon del jugador
-    except (ValueError, IndexError):
-        print("Selección inválida. Por favor, inténtalo de nuevo.")
-        return
-    
-    #? Capturo la vida inicial de los Pokemones
-    vida_pokemon_jugador = pokemon_jugador_combate.vida #* Captura la vida inicial del Pokemon jugador para comparar al final antes de capturar
-    vida_pokemon_enemigo = pokemon_enemigo_combate.vida #* Captura la vida inicial del Pokemon enemigo para comparar al final antes de capturar
-    
-    #? Ciclo para la batalla
-    turno = 1 #* Variable para llevar el control de los turnos | 1 = Jugador | 2 = Enemigo
-    
-    #? boolean para saber si alun pokemn activo su defensa  
-    defensa_activa_jugador = False
-    defensa_activa_enemigo = False
-    #? valores actuales de la defensa de los jugadores
-    defensa_enemigo = pokemon_enemigo_combate.defensa
-    defensa_jugador = pokemon_jugador_combate.defensa
+num_batalla = 1
 
-    #? boolean para ver si el jugador gano la batalla
+def Batalla_Pokemon():
+    global num_batalla
+
+    # Crear una carpeta para los registros
+    carpeta = "Registros_Batallas"
+    if not os.path.exists(carpeta):  # Si la carpeta no existe, se crea
+        os.makedirs(carpeta)
+
+    # Crear un archivo para guardar la batalla dentro de la carpeta
+    nombre_archivo = os.path.join(carpeta, f"Batalla_{num_batalla}.txt")
+    with open(nombre_archivo, "w") as archivo:
+        archivo.write(f"||-------------Battalla # {num_batalla}--------------||\n")
+        archivo.write(f"\nFecha y hora de inicio: {dt.now()}\n")
+        archivo.flush()
+        os.fsync(archivo.fileno())  # Asegura que los datos se escriban inmediatamente
+
+    # Define colores
+    RESET = "\033[0m"
+    ROJO = "\033[91m"
+    VERDE = "\033[92m"
+    AZUL = "\033[94m"
+
+    print(f"{AZUL}||-------------------------------------------------||")
+    print("             ¡ENTRASTE EN UNA BATALLA!")
+    print(f"||-------------------------------------------------||{RESET}")
+
+    print(f"{ROJO}||-------------------------------------------------||")
+    print("               POKÉMON ENEMIGO APARECE")
+    print(f"||-------------------------------------------------||{RESET}")
+
+    # Selección del Pokémon enemigo
+    pokemon_enemigo_combate = rd.choice(lista_pokemones_enemigos)
+    pokemon_enemigo_combate.detalles_pokemon()
+
+    with open(nombre_archivo, "a") as archivo:
+        archivo.write(f"\n||------Detalles de Pokemon enemigo------||\n")
+        detalles = pokemon_enemigo_combate.detalles_pokemon_archivo()
+        archivo.write(detalles + "\n")
+        archivo.flush()
+        os.fsync(archivo.fileno())
+
+    print(f"{VERDE}||-------------------------------------------------||")
+    print("                    TUS POKÉMONS")
+    print(f"||-------------------------------------------------||{RESET}")
+    Pokemones_Capturados()
+
+    try:
+        eleccion = int(input(f"\n{VERDE}Selecciona tu Pokémon para la batalla: {RESET}")) - 1
+        pokemon_jugador_combate = lista_pokemones[eleccion]
+    except (ValueError, IndexError):
+        print(f"{ROJO}⚠️ Selección inválida. Por favor, inténtalo de nuevo.{RESET}")
+        return
+
+    with open(nombre_archivo, "a") as archivo:
+        archivo.write(f"||------Detalles de Pokemon jugador------||\n")
+        detalles = pokemon_jugador_combate.detalles_pokemon_archivo()
+        archivo.write(detalles + "\n")
+        archivo.flush()
+        os.fsync(archivo.fileno())
+
+    # Variables de la batalla
+    vida_pokemon_jugador = pokemon_jugador_combate.vida
+    vida_pokemon_enemigo = pokemon_enemigo_combate.vida
+
+    turno = 1
+    defensa_activa_jugador = defensa_activa_enemigo = False
+    defensa_jugador = pokemon_jugador_combate.defensa
+    defensa_enemigo = pokemon_enemigo_combate.defensa
     gano = False
     
     #? se inicializa el ciclo de la batalla
@@ -343,7 +392,7 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
                 # Reducir primero la defensa del jugador
                 if defensa_jugador > 0:
                     if damage <= defensa_jugador:
-                        defensa_jugador -= damage
+                        defensa_jugador -=
                         print(f"Tu defensa absorbio {damage_ .2f} de daño")
                         damage = 0 # Todo el daño fue absorbido
                     else: 
@@ -379,12 +428,31 @@ def Batalla_Pokemon(): #? Simula una batalla entre dos Pokemones
         print("||------------------Capturar Pokémon------------------||\n")
         eleccion = input("¿Deseas capturar al Pokémon enemigo? (si/no): ").lower()
         if eleccion == "si":
-            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo,vida_inicio_jugador, defensa_enemigo)  #* Llama a la función de captura
+            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)  #* Llama a la función de captura
         else:
-            print("\nNo has capturado al Pokémon enemigo.\n")
-    
-    print("Fin del combate!\n")
-    print("||---------------------------------------------------||\n")
+            print(f"\n{ROJO}❌ ¡Perdiste la batalla!{RESET}\n")
+
+        # Resumen final
+        with open(nombre_archivo, "a") as archivo:
+            archivo.write(f"\nGanador: {ganador}\n")
+            archivo.write(f"Ataques del jugador: {ataques_jugador}\n")
+            archivo.write(f"Defensas del jugador: {defensas_jugador}\n")
+            archivo.write(f"Ataques del enemigo: {ataques_enemigo}\n")
+            archivo.write(f"Defensas del enemigo: {defensas_enemigo}\n")
+            archivo.write(f"Pokemon enemigo capturado: {'Si' if captura else 'No'}\n")
+            archivo.flush()
+            os.fsync(archivo.fileno())
+
+        num_batalla += 1
+
+        print(f"{AZUL}||-------------------------------------------------||")
+        print("                   FIN DEL COMBATE")
+        print(f"||-------------------------------------------------||{RESET}")
+
+    except Exception as e:
+        print(f"{ROJO}⚠️ Error durante la batalla: {e}{RESET}")
+
+
 
 def Saludo_Inicial():#? Saluda al usuario por primera vez en el juego, mostrando el nombre del juego y una breve descripcion
     
@@ -393,6 +461,28 @@ def Saludo_Inicial():#? Saluda al usuario por primera vez en el juego, mostrando
     print(f"\nBienvenido al Juego {nombre}!")
     print("Este es un Juego de Pokemon, donde podras capturar, entrenar a tus propios Pokemon y tener \nbatallas con otros Pokemon salvajes!")
     print("\n||--------------------------------------------------------------------------||\n")
+    
+def Manejo_errores(): #? Metodo para  mostrar el manejo de errores
+    try:
+        print("\n||------------------------------Manejo de errores------------------------------||\n")
+        print("||                      Error de tipo de dato en la entrada de un número                      ||")
+        error = int(input("Ingresa un String: "))
+    except ValueError:
+        print("El error 'ValueError' se manejo con un try except, ya que el valor ingresado no es un número entero.")
+        
+def Leer_Batallas(carpeta):  #? Método para leer las batallas pasadas
+    print("\n||------------------------------Batallas Pasadas------------------------------||\n")
+    
+    #* Iterar sobre todos los archivos en la carpeta
+    for archivo in os.listdir(carpeta):
+        if archivo.endswith(".txt"):  #* Filtrar solo archivos .txt
+            ruta_archivo = os.path.join(carpeta, archivo)
+            with open(ruta_archivo, "r", encoding="utf-8") as f:
+                print(f"Contenido de {archivo}:\n")
+                print(f.read())  #* Mostrar el contenido del archivo
+                print("\n||----------------------------------------------------------------------------||\n")  # Separador
+    
+    
 
 #! Codigo Principal
 
@@ -437,8 +527,14 @@ while True:
                 print("\nNo tienes Pokémon capturados para entrenar.\n")
             else:
                 Menu_Entrenar_Pokemon_Manual()  #* Llama al menú para entrenar un Pokémon manualmente
+                
+        elif opc == 6:  #* Método para mostrar el manejo de errores
+            Manejo_errores()
         
-        
+        elif opc == 7:  #* Método para mostrar las batallas pasadas
+            carpeta = "C:\\Users\\RogSt\\Desktop\\Examen-POO\\Registros_Batallas" #* Ruta de la carpeta de registros
+            Leer_Batallas(carpeta)
+            
         else:
             print("\nOpción no válida!\n")
 
@@ -447,21 +543,3 @@ while True:
 
 
 print("\n||--------------------------------------------------------------------------||\n")
-
-
-#TODO: Faltantes / Observaciones
-
-#? NO debe dejar que salgan numros negativos en batalla
-
-#? Menu debe aparecer despues de cada accion
-
-#? A crear pokemon enemigo la creacion debe ser por menu
-
-#? Implementar la evolucion de pokeomones
-
-#? en batalla cuando usas la defensa, el ataque debe quitar puntos de la defensa y si se acaba la defensa, le quita la restante del ataque a la vida
-
-#? pokemon debe hablar cuando se muestran detalles
-
-#? crear un registro de batallas ganadas y perdidas, de quien ataco, quien defendio, si se capturo, etc
-    #* extra, que cuadno se guarde  el registro que guarde los datos por num(batalla 1...) y que guarde el dia y la hora.

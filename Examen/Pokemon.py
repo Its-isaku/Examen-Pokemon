@@ -21,8 +21,20 @@ class Pokemon(Base): #* Clase donde se definen los atributos de un pokemon
         print(f"Vida: {self.vida}")
         print(f"Nivel: {self._level}")
         print(f"Evolución: {self._evol}")
-        print(f"Atrapado: {'Sí\n' if self.atrapado else 'No\n'}")
+        print(f"Atrapado: {'Si\n' if self.atrapado else 'No\n'}")
         self.hablar()
+        
+    def detalles_pokemon_archivo(self): #* Método que imprime los atributos del pokemon
+        detalles = (
+        f"Nombre: {self.nombre}\n"
+        f"Descripcion: {self.desc}\n"
+        f"Ataque: {self.ataque}\n"
+        f"Defensa: {self.defensa}\n"
+        f"Vida: {self.vida}\n"
+        f"Nivel: {self._level}\n"
+        f"Evolucion: {self._evol}\n"
+        f"Atrapado: {'Si' if self.atrapado else 'No'}\n")
+        return detalles
         
     #?Getters y Setters
     @property

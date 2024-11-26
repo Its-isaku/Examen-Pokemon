@@ -1,0 +1,39 @@
+||-------------Battalla # 1--------------||
+
+Fecha y hora de inicio: 2024-11-25 12:10:02.846790
+
+||------Detalles de Pokemon enemigo------||
+Nombre: Electrabuzz
+Descripcion: Pokemon de tipo Electro con una fuerza impresionante y energia constante.
+Ataque: 50
+Defensa: 60
+Vida: 450
+Nivel: 99
+Evolucion: 1
+Atrapado: No
+
+||------Detalles de Pokemon jugador------||
+Nombre: Psyduck
+Descripcion: Dios mismo
+Ataque: 999
+Defensa: 999
+Vida: 1000
+Nivel: 20
+Evolucion: 1
+Atrapado: Si
+
+||-----------Resumen de batalla----------||
+Jugador activo defensa.
+Enemigo ataco. Danio: 0.00. Vida jugador restante: 1000.00.
+Jugador activo defensa.
+Enemigo activo defensa.
+Jugador activo defensa.
+Enemigo ataco. Danio: 0.00. Vida jugador restante: 1000.00.
+Jugador ataco. Danio: 689.25. Vida enemigo restante: 0.00.
+
+Ganador: Jugador
+Ataques del jugador: 1
+Defensas del jugador: 3
+Ataques del enemigo: 2
+Defensas del enemigo: 1
+Pokemon enemigo capturado: Si
