@@ -256,7 +256,7 @@ def Capturar_Pokemon(pokemon_para_capturar, vida_inicio_enemigo, vida_inicio_jug
     if vida_inicio_enemigo < vida_inicio_jugador:  #* Vida inicial del enemigo es menor
         pokemon_para_capturar.atrapado = True  #* Cambia el estado a capturado
         pokemon_para_capturar.vida = vida_inicio_enemigo #* Restaura la vida inicial
-        pokemon_para_capturar.defensa = defensa_inicio_enemigo #* Restaura a defensa inicial
+        pokemon_para_capturar.defensa = defensa_inicio_enemigo #* Restaura la defensa inicial
         lista_pokemones.append(pokemon_para_capturar)  #* Agrega a la lista del jugador
         lista_pokemones_enemigos.remove(pokemon_para_capturar)  #* Elimina el Pokémon de la lista de enemigos
         print(f"\n¡Felicidades! Has capturado a {pokemon_para_capturar.nombre}!\n")
@@ -428,7 +428,7 @@ def Batalla_Pokemon():
         print("||------------------Capturar Pokémon------------------||\n")
         eleccion = input("¿Deseas capturar al Pokémon enemigo? (si/no): ").lower()
         if eleccion == "si":
-            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador)  #* Llama a la función de captura
+            Capturar_Pokemon(pokemon_enemigo_combate, vida_pokemon_enemigo, vida_pokemon_jugador, defensa_enemigo)  #* Llama a la función de captura
         else:
             print(f"\n{ROJO}❌ ¡Perdiste la batalla!{RESET}\n")
 
